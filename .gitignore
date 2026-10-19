@@ -5,3 +5,8 @@ __pycache__/
 predictions.csv
 .env
 Week-24-Graded-Mini-Project/dryrun/
+Week-27-Graded-Mini-Project/agentic-policy-assistant/runs_offline/
+Week-27-Graded-Mini-Project/agentic-policy-assistant/results_offline/
+__pycache__/
+.pytest_cache/
+*.sqlite

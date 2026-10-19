@@ -1,0 +1,9 @@
+column,lower,upper,outliers,max
+SalePrice,3938,340038,61,755000.0
+GrLivArea,159,2748,31,5642.0
+LotArea,1482,17674,69,215245.0
+TotalBsmtSF,42,2052,61,6110.0
+1stFlrSF,118,2155,20,4692.0
+GarageArea,-28,938,21,1418.0
+LotFrontage,28,112,88,313.0
+MasVnrArea,-249,415,96,1600.0

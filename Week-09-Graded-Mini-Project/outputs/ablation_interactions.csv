@@ -1,0 +1,5 @@
+Model,CV RMSE without interactions,CV RMSE with interactions,Improvement (%),Folds improved
+XGBoost,0.1146,0.1108,3.3246,5/5
+LightGBM,0.1174,0.1127,3.9887,5/5
+CatBoost,0.1116,0.1089,2.462,5/5
+Ridge (baseline),0.1144,0.1146,-0.1698,2/5

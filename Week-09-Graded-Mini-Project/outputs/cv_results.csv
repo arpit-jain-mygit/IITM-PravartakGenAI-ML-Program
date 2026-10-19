@@ -1,0 +1,5 @@
+Model,CV RMSE (log),CV std,Tuning time (s)
+XGBoost,0.1108,0.0115,80
+LightGBM,0.1127,0.0105,326
+CatBoost,0.1089,0.0102,193
+Ridge (baseline),0.1146,0.0088,0

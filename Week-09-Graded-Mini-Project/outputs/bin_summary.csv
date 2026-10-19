@@ -1,0 +1,21 @@
+bin,category,count,median
+AgeBand,New,308,226000
+AgeBand,Recent,254,212000
+AgeBand,Established,457,147000
+AgeBand,Old,439,127000
+QualBand,Low,141,105000
+QualBand,Average,771,143000
+QualBand,Good,487,222000
+QualBand,Excellent,59,374000
+SizeBand,Small,371,123000
+SizeBand,Medium,360,155000
+SizeBand,Large,371,185000
+SizeBand,Very large,356,240000
+EraBuilt,Pre-1950,318,122000
+EraBuilt,1950-1979,530,142000
+EraBuilt,1980-1999,224,194000
+EraBuilt,2000+,386,224000
+LotBand,Compact,363,133000
+LotBand,Standard,479,153000
+LotBand,Large,496,190000
+LotBand,Estate,120,219000

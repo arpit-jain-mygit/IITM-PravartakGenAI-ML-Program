@@ -1,0 +1,16 @@
+,mean_drop_auc,std
+OverTime,0.0924,0.0115
+MonthlyIncome,0.0786,0.0317
+TotalWorkingYears,0.0234,0.0196
+NumCompaniesWorked,0.022,0.0136
+YearsSinceLastPromotion,0.0212,0.0074
+BusinessTravel,0.0199,0.0072
+JobSatisfaction,0.0197,0.01
+MaritalStatus,0.0172,0.0082
+EnvironmentSatisfaction,0.0141,0.0113
+TrainingTimesLastYear,0.0134,0.0038
+JobInvolvement,0.0109,0.0098
+YearsAtCompany,0.0086,0.0093
+EducationField,0.0074,0.004
+StockOptionLevel,0.0056,0.0053
+DistanceFromHome,0.0056,0.01

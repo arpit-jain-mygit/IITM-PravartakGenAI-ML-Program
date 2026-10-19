@@ -1,0 +1,6 @@
+,CV F1,CV F1 std,CV ROC-AUC
+SVM (RBF),0.551,0.041,0.842
+Gradient Boosting + SMOTE,0.551,0.056,0.825
+Logistic Regression,0.507,0.045,0.834
+Random Forest,0.491,0.036,0.789
+Decision Tree,0.425,0.025,0.707

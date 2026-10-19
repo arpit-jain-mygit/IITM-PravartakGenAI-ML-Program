@@ -1,0 +1,21 @@
+,coef,odds_ratio
+OverTime_Yes,1.22,3.38
+BusinessTravel_Non-Travel,-0.71,0.49
+JobRole_Laboratory Technician,0.6,1.82
+YearsPerCompany,-0.51,0.6
+Department_Research & Development,-0.51,0.6
+YearsSinceLastPromotion,0.5,1.65
+BusinessTravel_Travel_Frequently,0.44,1.56
+MaritalStatus_Divorced,-0.44,0.65
+JobRole_Research Director,-0.42,0.66
+EducationField_Other,-0.35,0.71
+JobRole_Research Scientist,-0.33,0.72
+JobRole_Sales Representative,0.31,1.37
+JobRole_Healthcare Representative,-0.3,0.74
+AvgSatisfaction,-0.29,0.75
+DistanceFromHome,0.28,1.33
+JobInvolvement,-0.28,0.75
+YearsWithCurrManager,-0.28,0.75
+TotalWorkingYears,-0.28,0.75
+EducationField_Life Sciences,-0.26,0.77
+Age,-0.24,0.78

@@ -1,0 +1,50 @@
+{
+  "model": "Logistic Regression",
+  "best_params": {
+    "C": 0.1,
+    "penalty": "l2"
+  },
+  "decision_threshold": 0.68,
+  "test_metrics_at_threshold": {
+    "Precision": 0.575,
+    "Recall": 0.489,
+    "F1": 0.529
+  },
+  "test_roc_auc": 0.801,
+  "input_columns": [
+    "Age",
+    "BusinessTravel",
+    "DailyRate",
+    "Department",
+    "DistanceFromHome",
+    "Education",
+    "EducationField",
+    "EmployeeCount",
+    "EmployeeNumber",
+    "EnvironmentSatisfaction",
+    "Gender",
+    "HourlyRate",
+    "JobInvolvement",
+    "JobLevel",
+    "JobRole",
+    "JobSatisfaction",
+    "MaritalStatus",
+    "MonthlyIncome",
+    "MonthlyRate",
+    "NumCompaniesWorked",
+    "Over18",
+    "OverTime",
+    "PercentSalaryHike",
+    "PerformanceRating",
+    "RelationshipSatisfaction",
+    "StandardHours",
+    "StockOptionLevel",
+    "TotalWorkingYears",
+    "TrainingTimesLastYear",
+    "WorkLifeBalance",
+    "YearsAtCompany",
+    "YearsInCurrentRole",
+    "YearsSinceLastPromotion",
+    "YearsWithCurrManager"
+  ]
+}

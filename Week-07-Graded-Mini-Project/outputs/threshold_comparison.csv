@@ -1,0 +1,3 @@
+Threshold,Precision,Recall,F1,Flagged,Leavers caught
+default 0.50,0.361,0.638,0.462,83,30 / 47
+tuned 0.68,0.575,0.489,0.529,40,23 / 47

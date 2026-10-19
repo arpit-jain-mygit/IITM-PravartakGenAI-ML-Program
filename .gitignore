@@ -10,3 +10,8 @@ Week-27-Graded-Mini-Project/agentic-policy-assistant/results_offline/
 __pycache__/
 .pytest_cache/
 *.sqlite
+Capstone-Retail-Decision-Assistant/capstone_project/outputs_offline/
+Capstone-Retail-Decision-Assistant/capstone_project/.cache*/
+Capstone-Retail-Decision-Assistant/capstone_project/data/raw/
+Capstone-Retail-Decision-Assistant/capstone_project/data/policies/
+Capstone-Retail-Decision-Assistant/capstone_project/data/processed/

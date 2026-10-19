@@ -1,0 +1,177 @@
+[
+ {
+  "qid": "Q1",
+  "conv": "A",
+  "turn": 1,
+  "type": "factual",
+  "question": "How many days of annual leave do full-time employees get each year?",
+  "retrieval_query": "How many days of annual leave do full-time employees get each year?",
+  "gold_pages": [
+   "Leave Policy#1"
+  ],
+  "gold_answer": "24 days per leave year, accruing at 2 days per completed month.",
+  "must_contain": [
+   [
+    "24"
+   ]
+  ]
+ },
+ {
+  "qid": "Q2",
+  "conv": "A",
+  "turn": 2,
+  "type": "follow-up",
+  "question": "How many of those can I carry forward, and what happens to the rest?",
+  "retrieval_query": "How many unused annual leave days can be carried forward, and what happens to the rest?",
+  "gold_pages": [
+   "Leave Policy#2"
+  ],
+  "gold_answer": "Up to 10 days carry forward; anything above 10 lapses on 31 December and is not paid out (except up to 15 days encashed on resignation).",
+  "must_contain": [
+   [
+    "10"
+   ],
+   [
+    "lapse",
+    "not paid",
+    "forfeit",
+    "expire"
+   ]
+  ]
+ },
+ {
+  "qid": "Q3",
+  "conv": "A",
+  "turn": 3,
+  "type": "factual",
+  "question": "What notice is needed to apply for planned leave?",
+  "retrieval_query": "What notice is needed to apply for planned leave?",
+  "gold_pages": [
+   "Leave Policy#2"
+  ],
+  "gold_answer": "At least 7 calendar days in PeopleDesk; more than 5 consecutive working days needs 21 days' notice and manager + department head approval.",
+  "must_contain": [
+   [
+    "7"
+   ],
+   [
+    "21"
+   ]
+  ]
+ },
+ {
+  "qid": "Q4",
+  "conv": "B",
+  "turn": 1,
+  "type": "factual",
+  "question": "Which flight class can I book for a 4-hour domestic flight?",
+  "retrieval_query": "Which flight class can I book for a 4-hour domestic flight?",
+  "gold_pages": [
+   "Travel and Expense Policy#1"
+  ],
+  "gold_answer": "Economy class (standard for flights up to 6 hours).",
+  "must_contain": [
+   [
+    "economy"
+   ]
+  ]
+ },
+ {
+  "qid": "Q5",
+  "conv": "B",
+  "turn": 2,
+  "type": "factual",
+  "question": "What is the daily allowance for international travel?",
+  "retrieval_query": "What is the daily allowance (per diem) for international travel?",
+  "gold_pages": [
+   "Travel and Expense Policy#2"
+  ],
+  "gold_answer": "USD 75 per day (not paid on days meals are provided).",
+  "must_contain": [
+   [
+    "75"
+   ]
+  ]
+ },
+ {
+  "qid": "Q6",
+  "conv": "B",
+  "turn": 3,
+  "type": "boundary",
+  "question": "Does the company reimburse my gym membership?",
+  "retrieval_query": "Does the company reimburse gym membership?",
+  "gold_pages": [],
+  "gold_answer": "Not covered by the policies -> should say it doesn't know.",
+  "must_contain": []
+ },
+ {
+  "qid": "Q7",
+  "conv": "C",
+  "turn": 1,
+  "type": "factual",
+  "question": "What are the eligibility criteria for promotion?",
+  "retrieval_query": "What are the eligibility criteria for promotion?",
+  "gold_pages": [
+   "Performance and Promotion Policy#2"
+  ],
+  "gold_answer": "At least 18 months in current level and a rating of 4 or higher in each of the last two review cycles.",
+  "must_contain": [
+   [
+    "18"
+   ],
+   [
+    "4"
+   ]
+  ]
+ },
+ {
+  "qid": "Q8",
+  "conv": "C",
+  "turn": 2,
+  "type": "follow-up",
+  "question": "Once I'm promoted to L5, which class can I fly on an 8-hour flight?",
+  "retrieval_query": "Which flight class can an L5 employee book for an 8-hour flight?",
+  "gold_pages": [
+   "Travel and Expense Policy#1"
+  ],
+  "gold_answer": "Business class (flights over 6 hours, level L5 and above).",
+  "must_contain": [
+   [
+    "business"
+   ]
+  ]
+ },
+ {
+  "qid": "Q9",
+  "conv": "C",
+  "turn": 3,
+  "type": "boundary",
+  "question": "What is the CEO's annual salary?",
+  "retrieval_query": "What is the CEO's annual salary?",
+  "gold_pages": [],
+  "gold_answer": "Not in the policies -> should say it doesn't know.",
+  "must_contain": []
+ },
+ {
+  "qid": "Q10",
+  "conv": "D",
+  "turn": 1,
+  "type": "factual",
+  "question": "I clicked a link in a phishing email. How quickly must I report it, and to whom?",
+  "retrieval_query": "How quickly must a security incident such as a clicked phishing email be reported, and to whom?",
+  "gold_pages": [
+   "IT and Information Security Policy#2"
+  ],
+  "gold_answer": "Within 1 hour, to Security Operations at security@kestrel.example or hotline extension 4444.",
+  "must_contain": [
+   [
+    "1 hour",
+    "one hour",
+    "60 minutes"
+   ],
+   [
+    "security"
+   ]
+  ]
+ }
+]

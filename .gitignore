@@ -3,3 +3,5 @@ __pycache__/
 .ipynb_checkpoints/
 .DS_Store
 predictions.csv
+.env
+Week-24-Graded-Mini-Project/dryrun/

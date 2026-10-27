@@ -8,6 +8,13 @@ observation. Every LLM response is cached on disk, so an identical rerun gives i
 
 from __future__ import annotations
 
+import os as _os
+
+# macOS: faiss-cpu and PyTorch (local embedding model) each bundle an OpenMP runtime; loading both can abort
+# the process ("OMP: Error #15"). Allowing the duplicate must happen before either loads (no effect on Linux/Colab).
+_os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+_os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
 import os
 import time
 from functools import lru_cache

@@ -52,7 +52,7 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 # ---------------------------------------------------------------------------
 # Fixed configuration (recorded in every log row for reproducibility)
 # ---------------------------------------------------------------------------
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")   # 2.5-flash is retired for new API keys
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")   # model used for the graded run
 OPENAI_EMBED_MODEL = "text-embedding-3-small"
 OPEN_SOURCE_EMBED_MODEL = "BAAI/bge-small-en-v1.5"
 TOP_K = 4

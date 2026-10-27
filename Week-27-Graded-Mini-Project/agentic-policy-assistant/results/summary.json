@@ -1,0 +1,7 @@
+{
+  "v1_agent_only_pass": 1.0,
+  "cold_pass": 1.0,
+  "warm_pass": 1.0,
+  "tests": "22 passed in 11.27s",
+  "model": "gpt-4o-mini"
+}

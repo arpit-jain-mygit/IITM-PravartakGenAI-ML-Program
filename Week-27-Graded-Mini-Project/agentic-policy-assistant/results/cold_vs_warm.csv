@@ -1,0 +1,7 @@
+,cold,warm
+avg latency (s),3.891,2.882
+avg tool steps,2.25,1.25
+avg tokens,2821.125,1571.625
+pass rate,1.0,1.0
+memory hits,0.0,7.0
+memory writes,7.0,0.0

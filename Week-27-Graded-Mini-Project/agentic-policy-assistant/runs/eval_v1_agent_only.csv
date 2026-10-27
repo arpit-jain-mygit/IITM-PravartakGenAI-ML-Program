@@ -1,0 +1,9 @@
+id,kind,latency_s,agent_steps,has_docid,has_quote,cited,expected_doc_cited,facts_ok,recovered,tokens,PASS
+E1,factual,2.93,1,True,True,remote_work_v2,True,True,False,1475,True
+E2,factual,2.825,1,True,True,leave_v3,True,True,False,1491,True
+E3,factual,3.228,2,True,True,travel_v4,True,True,False,2500,True
+E4,factual,3.343,2,True,True,security_v1,True,True,False,2468,True
+E5,recovery,4.605,3,True,True,remote_work_v2,True,True,True,3329,True
+E6,multi-tool,2.816,2,True,True,travel_v4,True,True,False,1533,True
+E7,factual,2.207,1,True,True,security_v1,True,True,False,1421,True
+E8,boundary,6.503,4,False,False,,True,True,False,5715,True

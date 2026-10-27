@@ -1,0 +1,9 @@
+id,kind,question,status,latency_s,agent_steps,graph_steps,has_docid,has_quote,cited,expected_doc_cited,facts_ok,critic_valid,retries,memory_hit,memory_written,recovered,tokens,PASS
+E1,factual,What is our remote work limit? Cite and quote.,ok,3.891,1,6,True,True,remote_work_v2,True,True,True,0,True,False,False,1480,True
+E2,factual,How many annual leave days and can they be carried over? Cite and quote.,ok,2.881,1,6,True,True,leave_v3,True,True,True,0,True,False,False,1474,True
+E3,factual,What's the travel meals cap (INR) and any receipt rule? Cite and quote.,ok,2.83,1,6,True,True,travel_v4,True,True,True,0,True,False,False,1494,True
+E4,factual,Is MFA required for VPN? Cite and quote.,ok,2.357,1,6,True,True,security_v1,True,True,True,0,True,False,False,1423,True
+E5,recovery,Read policy remote_work_v9.9 and answer the limit.,ok,4.0,2,6,True,True,remote_work_v2,True,True,True,0,True,False,True,2365,True
+E6,multi-tool,Compute 12 * 4 and then tell me meals cap with citation.,ok,2.817,2,6,True,True,travel_v4,True,True,True,0,True,False,False,1534,True
+E7,factual,What is the minimum password length? Cite and quote.,ok,2.256,1,6,True,True,security_v1,True,True,True,0,True,False,False,1389,True
+E8,boundary,What is the CEO's annual salary?,ok,2.027,1,6,False,False,,True,True,True,0,False,False,False,1414,True

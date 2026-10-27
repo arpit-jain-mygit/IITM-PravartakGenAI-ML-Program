@@ -34,7 +34,7 @@ if [ "${POLICY_OFFLINE:-0}" != "1" ]; then
   cp "$NAME.pdf" "${NAME}_Summary.pdf" "agentic-policy-assistant/$NAME.ipynb" "$STAGE/$NAME/"
   cp -R agentic-policy-assistant/results "$STAGE/$NAME/results"
   rsync -a --exclude ".env" --exclude "__pycache__" --exclude ".pytest_cache" --exclude "runs_offline" \
-        --exclude "results_offline" --exclude "*.sqlite" agentic-policy-assistant "$STAGE/$NAME/"
+        --exclude "results_offline" --exclude "*.sqlite" --exclude "*.sqlite-*" agentic-policy-assistant "$STAGE/$NAME/"
   rm -f "$NAME.zip"; (cd "$STAGE" && zip -qr - "$NAME") > "$NAME.zip"
   echo "Ready: $NAME.pdf, ${NAME}_Summary.pdf, $NAME.zip, agentic-policy-assistant/$NAME.ipynb, agentic-policy-assistant/results/"
 fi

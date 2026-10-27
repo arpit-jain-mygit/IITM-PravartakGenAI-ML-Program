@@ -24,16 +24,17 @@ else
 fi
 cd ..
 
-# 3. fill the course template -> docx + pdf
+# 3. fill the course template -> docx + pdf, and the 2-page analysis summary
 $PY make_report.py
+$PY make_summary.py
 
 # 4. submission zip: PDF + notebook + results PNGs + the whole repo (without keys, caches or venv)
 if [ "${POLICY_OFFLINE:-0}" != "1" ]; then
   STAGE=$(mktemp -d); mkdir "$STAGE/$NAME"
-  cp "$NAME.pdf" "agentic-policy-assistant/$NAME.ipynb" "$STAGE/$NAME/"
+  cp "$NAME.pdf" "${NAME}_Summary.pdf" "agentic-policy-assistant/$NAME.ipynb" "$STAGE/$NAME/"
   cp -R agentic-policy-assistant/results "$STAGE/$NAME/results"
   rsync -a --exclude ".env" --exclude "__pycache__" --exclude ".pytest_cache" --exclude "runs_offline" \
         --exclude "results_offline" --exclude "*.sqlite" agentic-policy-assistant "$STAGE/$NAME/"
   rm -f "$NAME.zip"; (cd "$STAGE" && zip -qr - "$NAME") > "$NAME.zip"
-  echo "Ready: $NAME.pdf, $NAME.zip, agentic-policy-assistant/$NAME.ipynb, agentic-policy-assistant/results/"
+  echo "Ready: $NAME.pdf, ${NAME}_Summary.pdf, $NAME.zip, agentic-policy-assistant/$NAME.ipynb, agentic-policy-assistant/results/"
 fi

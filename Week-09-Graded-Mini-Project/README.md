@@ -9,7 +9,6 @@ This project analyses 1,460 house sales (Ames, Iowa, 2006-2010) to find what dri
 | File | What it is |
 |---|---|
 | `Week 9_Graded Mini Project_Jain.pdf` | **Submission report.** Every task answered with code snippets, charts, tables and interpretation |
-| `make_report.py`, `report_helpers.py` | Rebuild the report (DOCX + PDF) from `outputs/` |
 | `Week 9_Graded Mini Project_Jain.ipynb` | Full notebook with all code and outputs |
 | `Week 9_Graded Mini Project_Jain.docx` | Editable Word version of the report |
 | `Week 9_Graded Mini Project_Jain.zip` | Upload bundle: PDF + notebook + data + outputs + this README |

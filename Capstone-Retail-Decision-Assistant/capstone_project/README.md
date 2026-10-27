@@ -33,7 +33,7 @@ capstone_project/
 ├── src/                                   config, data_prep, ml, documents, llm, retrieval, recommender, policy_qa, tools, agent, evaluation
 ├── tests/test_regressions.py              23 offline regression tests
 ├── outputs/                               charts, tables, model, segment summary, eval logs, Capstone_Report.pdf
-├── make_report.py, run_all.sh, README.md, requirements.txt, .env.example
+├── run_all.sh, README.md, requirements.txt, .env.example
 ```
 
 ## Dataset: source, reproduction and data dictionary

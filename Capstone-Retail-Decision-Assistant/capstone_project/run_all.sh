@@ -30,13 +30,13 @@ done
 cd ..
 
 # 3. short report (PDF) from the saved outputs
-$PY make_report.py
+[ -f make_report.py ] && $PY make_report.py      # report builder lives in the repo only, not in the zip
 
 # 4. submission zip (live run only): everything except keys, caches and offline artefacts
 if [ "${RETAIL_OFFLINE:-0}" != "1" ]; then
   STAGE=$(mktemp -d); mkdir "$STAGE/$NAME"
   rsync -a --exclude ".env" --exclude ".cache*" --exclude "outputs_offline" --exclude "__pycache__" \
-        --exclude ".pytest_cache" ./ "$STAGE/$NAME/capstone_project/"
+        --exclude ".pytest_cache" --exclude "make_report.py" ./ "$STAGE/$NAME/capstone_project/"
   cp outputs/Capstone_Report.pdf "$STAGE/$NAME/"
   rm -f "../$NAME.zip"; (cd "$STAGE" && zip -qr - "$NAME") > "../$NAME.zip"
   echo "Ready: ../$NAME.zip  (report: outputs/Capstone_Report.pdf)"

@@ -1,3 +1,0 @@
-model,dimensions,embed 29 chunks (s),per query (ms),tokens,cost this corpus (USD),cost per 1M tokens (USD),runs where
-OpenAI text-embedding-3-small,1536,1.42,276.0,2709,5.4e-05,0.02,OpenAI cloud API
-BGE-small-en-v1.5 (local CPU),384,0.33,13.2,2709,0.0,0 (self-hosted),"this laptop, no network"

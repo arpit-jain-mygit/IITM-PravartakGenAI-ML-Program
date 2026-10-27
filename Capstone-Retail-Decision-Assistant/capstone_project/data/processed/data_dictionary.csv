@@ -1,0 +1,56 @@
+column,group,origin,dtype,missing,unique,example,description,how_created
+customer_id,Customer profile,original (course dataset),str,0,250,C100,Customer identifier (NOT stable across rows - see data notes),
+age,Customer profile,original (course dataset),int64,0,43,26,Customer age in years,
+gender,Customer profile,original (course dataset),str,0,2,Male,Customer gender,
+city_tier,Customer profile,original (course dataset),str,0,3,Tier-3,Tier-1/2/3 city,
+state,Customer profile,original (course dataset),str,0,5,Tamil Nadu,Indian state,
+income_band,Customer profile,original (course dataset),str,0,3,Low,Low / Medium / High,
+occupation,Customer profile,original (course dataset),str,0,5,Self-Employed,Customer occupation,
+membership_level,Customer profile,original (course dataset),str,0,4,Platinum,Bronze < Silver < Gold < Platinum loyalty tier,
+days_since_last_purchase,Customer history,original (course dataset),int64,0,110,42,Recency: days since the customer's previous order,
+avg_order_value,Customer history,original (course dataset),float64,0,1491,3334.08,Customer's historical average order value (INR),
+total_orders,Customer history,original (course dataset),int64,0,19,3,Customer's historical number of orders,
+preferred_channel,Customer history,original (course dataset),str,0,3,App,App / Web / Store,
+product_id,Product profile,original (course dataset),str,0,300,P1000,Source product identifier (NOT stable - one id maps to 5 different products),
+category,Product profile,original (course dataset),str,0,3,Accessories,Accessories / Apparel / Shoes,
+sub_category,Product profile,original (course dataset),str,0,12,Backpack,"12 sub-categories, e.g. Sneakers, Watch, Jeans",
+brand,Product profile,original (course dataset),str,0,14,Fastrack,Product brand,
+color,Product profile,original (course dataset),str,0,10,Blue,Product colour,
+size,Product profile,original (course dataset),str,270,4,XL,S/M/L/XL (18% missing),
+material,Product profile,original (course dataset),str,0,7,Leather,Main material,
+season,Product profile,original (course dataset),str,0,4,Winter,Season the product is designed for,
+is_returnable,Product profile,original (course dataset),int64,0,2,1,1 if the item is eligible for return,
+base_price,Commercial data,original (course dataset),float64,0,1424,3478.35,List price before discount (INR),
+discount_percent,Commercial data,original (course dataset),int64,0,8,0,Discount offered (0-40%),
+final_price,Commercial data,original (course dataset),float64,0,1430,3478.35,Price after discount (INR),
+avg_product_rating,Commercial data,original (course dataset),float64,0,25,4.2,Average product rating (1-5),
+stock_level,Commercial data,original (course dataset),int64,0,196,28,Units in stock,
+purchase_flag,Interaction data,original (course dataset),int64,0,2,0,TARGET - 1 if the interaction ended in a purchase,
+quantity,Interaction data,original (course dataset),int64,0,3,1,Units in the interaction,
+payment_mode,Interaction data,original (course dataset),str,0,5,Wallet,COD / UPI / Card / Wallet,
+delivery_type,Interaction data,original (course dataset),str,0,2,Standard,Standard / Express,
+time_on_page,Interaction data,original (course dataset),float64,0,1128,250.7,Seconds spent on the product page,
+added_to_cart,Interaction data,original (course dataset),int64,0,2,1,1 if the product was added to cart,
+wishlist_flag,Interaction data,original (course dataset),int64,0,2,0,1 if wishlisted,
+returned_flag,Post-purchase data,original (course dataset),int64,0,2,0,1 if the purchase was returned (post-purchase),
+rating_given,Post-purchase data,original (course dataset),int64,0,4,4,Rating given by the customer,
+review_sentiment_label,Post-purchase data,original (course dataset),str,0,3,positive,positive / neutral / negative label of the review,
+product_title,GenAI text extension,original (course dataset),str,0,746,Fastrack Blue Backpack Leather Accessories,Short product title,
+product_description,GenAI text extension,original (course dataset),str,0,1241,A blue backpack from Fastrack made with leather. Designed fo,Templated product description,
+customer_review_text,GenAI text extension,original (course dataset),str,0,28,Loved the blue accessories product. Good quality and worth t,Review text (28 distinct templates),
+customer_query,GenAI text extension,original (course dataset),str,0,1498,Need a blue backpack for travel under Rs. 4478,Synthetic shopper query for this product,
+policy_doc_id,GenAI text extension,original (course dataset),str,0,5,POL_WARRANTY,Policy linked to the row,
+policy_text_snippet,GenAI text extension,original (course dataset),str,0,5,Watches and selected accessories carry a 6-month manufacture,Text of the linked policy,
+image_path,GenAI text extension,original (course dataset),str,0,300,images/P1000.jpg,Placeholder image path (no images supplied),
+recommended_use_case,GenAI text extension,original (course dataset),str,0,7,Travel,Primary use case,
+style_tags,GenAI text extension,original (course dataset),str,0,162,"Blue, Leather, Travel",Comma-separated style tags,
+occasion_tags,GenAI text extension,original (course dataset),str,0,7,Travel,Occasion tag,
+item_id,Key,engineered (this project),str,0,1500,ITM0000,"Stable unique product key, one per row (ITM0000...)",row order of the raw file
+size_filled,Product profile,engineered (this project),str,0,5,XL,size with missing values set to 'Unknown',size.fillna('Unknown')
+size_missing,Product profile,engineered (this project),int64,0,2,0,1 if size was missing,size.isna()
+discount_amount,Commercial data,engineered (this project),float64,0,1243,0.0,base_price - final_price (INR saved),base_price - final_price
+price_to_aov,Commercial data,engineered (this project),float64,0,1432,1.0433,Item price relative to the customer's usual basket,final_price / avg_order_value
+income_ord,Customer profile,engineered (this project),int64,0,3,0,"Ordinal income: Low=0, Medium=1, High=2",map(income_band)
+membership_ord,Customer profile,engineered (this project),int64,0,4,3,Ordinal membership: Bronze=0 ... Platinum=3,map(membership_level)
+engagement,Interaction data,engineered (this project),int64,0,3,1,added_to_cart + wishlist_flag (0-2),added_to_cart + wishlist_flag
+price_band,Commercial data,engineered (this project),str,0,3,Mid,Budget <1500 / Mid 1500-3500 / Premium >3500 (final_price),pd.cut

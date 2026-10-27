@@ -38,7 +38,7 @@ capstone_project/
 
 ## Dataset: source, reproduction and data dictionary
 
-- **Source:** the course-provided `retail_interactions.csv` and `retail_policies.json`. These are the course's supporting files. They are included in the submission zip, but not in the public GitHub repo: copy them into `data/raw/` and `data/policies/` before running.
+- **Source:** the course-provided `retail_interactions.csv` and `retail_policies.json`. These are the course's supporting files, included in `data/` and in the submission zip.
 - **Text columns already in the source.** The GenAI extension columns come with the dataset and were not created by me: `product_title`, `product_description`, `customer_review_text`, `customer_query`, `policy_doc_id`, `policy_text_snippet`, `style_tags`, `occasion_tags`, `recommended_use_case`, `image_path`.
 - **Engineered columns (added by me):**
   - `item_id`

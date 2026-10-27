@@ -44,4 +44,3 @@ Only the deliverables:
 
 **Never included:** `.env`, caches of keys, the report-building scripts, `run_all.sh`, `check_setup.py`, `package.sh`.
 
-**Capstone zip:** it contains the course-provided data files, so it is kept out of this public repository and exists only locally for upload.

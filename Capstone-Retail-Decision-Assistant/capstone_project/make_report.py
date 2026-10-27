@@ -156,4 +156,4 @@ s += [P("7. Findings, limitations and next steps", h2),
 out = O / "Capstone_Report.pdf"
 SimpleDocTemplate(str(out), pagesize=A4, leftMargin=1.8 * cm, rightMargin=1.8 * cm, topMargin=1.5 * cm, bottomMargin=1.5 * cm,
                   title="Intelligent Retail Decision Assistant - Capstone Report", author="Arpit Jain").build(s)
-print("saved", out)
+print("saved", out.relative_to(config.ROOT))

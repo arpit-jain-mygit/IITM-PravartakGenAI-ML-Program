@@ -21,7 +21,7 @@ import rag
 import summarize
 from report_helpers import Body, new_document, section
 
-HERE = Path(__file__).parent
+HERE = Path(__file__).resolve().parent
 W = rag.WORK_DIR
 O = W / "outputs"
 NAME = "Week 24_Graded Mini Project_Jain"
@@ -238,14 +238,14 @@ c.bullets([f"Versions and configuration are printed in notebook section 0 (LLM {
            "scores, builds this report and zips the deliverables."])
 
 d.save(OUT_DOCX)
-print("saved", OUT_DOCX)
+print("saved", OUT_DOCX.relative_to(HERE))
 
 # ---------------------------------------------------------------- PDF via LibreOffice
 soffice = shutil.which("soffice") or "/Applications/LibreOffice.app/Contents/MacOS/soffice"
 if Path(soffice).exists():
     subprocess.run([soffice, "--headless", "--convert-to", "pdf", "--outdir", str(OUT_DOCX.parent), str(OUT_DOCX)],
                    check=True, capture_output=True)
-    print("saved", OUT_DOCX.with_suffix(".pdf"))
+    print("saved", OUT_DOCX.with_suffix(".pdf").relative_to(HERE))
 else:
     print("LibreOffice not found: open the .docx in Word and use File > Save As > PDF")
 if n_reviewed < len(ev):

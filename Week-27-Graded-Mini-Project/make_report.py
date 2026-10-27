@@ -20,7 +20,7 @@ import pandas as pd
 
 from report_helpers import Body, new_document, section
 
-HERE = Path(__file__).parent
+HERE = Path(__file__).resolve().parent
 REPO = HERE / "agentic-policy-assistant"
 OFFLINE = os.getenv("POLICY_OFFLINE") == "1"
 RUN = REPO / ("runs_offline" if OFFLINE else "runs")
@@ -188,9 +188,9 @@ c.bullets([f"**Acceptance:** cold {pct(cold.PASS)}, warm {pct(warm.PASS)}. Targe
            "claims; similarity thresholds were tuned on this corpus."])
 
 d.save(OUT_DOCX)
-print("saved", OUT_DOCX)
+print("saved", OUT_DOCX.relative_to(HERE))
 soffice = shutil.which("soffice") or "/Applications/LibreOffice.app/Contents/MacOS/soffice"
 if Path(soffice).exists():
     subprocess.run([soffice, "--headless", "--convert-to", "pdf", "--outdir", str(OUT_DOCX.parent), str(OUT_DOCX)],
                    check=True, capture_output=True)
-    print("saved", OUT_DOCX.with_suffix(".pdf"))
+    print("saved", OUT_DOCX.with_suffix(".pdf").relative_to(HERE))

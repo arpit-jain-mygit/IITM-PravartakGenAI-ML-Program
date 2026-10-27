@@ -54,6 +54,9 @@ def draft_row(r, q):
         s["relevance"] = 2 if hits == len(q["must_contain"]) else (1 if hits else 0)
         valid = bool(cited) and cited <= used
         s["citation"] = 2 if valid and cited & gold else (1 if cited & gold or valid else 0)
+        if s["citation"] == 2 and re.search(r"\[[^\[\]#]+?#\d+#[\w-]+\]", ans):
+            s["citation"] = 1          # right page, but format [Title#page#chunk] instead of [Title#page]
+            notes.append("citation format includes the chunk number ([Title#page#chunk]) - page is correct")
         if cited - used:
             s["groundedness"] = 0
             notes.append(f"cites pages that were not retrieved: {sorted(cited - used)}")

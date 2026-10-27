@@ -1,0 +1,8 @@
+run_id,change,chunk,overlap,embedding,prompt,relevance,groundedness,citation,conciseness,memory,refusal,avg_tokens_out,avg_latency_s,total_tokens,overall,points
+R1,baseline,600,15%,openai,P1,1.0,1.0,0.95,1.0,1.0,1.0,41.7,10.977,8310,0.992,83 / 84
+R2,chunk 300,300,15%,openai,P1,1.0,1.0,0.85,1.0,1.0,1.0,41.6,10.198,6404,0.975,81 / 84
+R3,chunk 1000,1000,15%,openai,P1,1.0,1.0,1.0,1.0,1.0,1.0,38.7,8.761,10873,1.0,84 / 84
+R4,overlap 10%,600,10%,openai,P1,1.0,1.0,1.0,1.0,1.0,1.0,46.1,9.435,8338,1.0,84 / 84
+R5,overlap 20%,600,20%,openai,P1,1.0,1.0,1.0,1.0,1.0,1.0,39.0,8.153,8261,1.0,84 / 84
+R6,open-source embeddings,600,15%,bge,P1,1.0,1.0,1.0,1.0,1.0,1.0,37.9,8.21,8006,1.0,84 / 84
+R7,prompt P2,600,15%,openai,P2,1.0,1.0,0.85,0.6,1.0,1.0,92.4,10.732,10271,0.908,77 / 84

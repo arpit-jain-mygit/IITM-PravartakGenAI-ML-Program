@@ -221,7 +221,9 @@ CONDENSE = ChatPromptTemplate.from_messages([
 # ---------------------------------------------------------------------------
 # 6. The Runnable graph and a conversational session with memory
 # ---------------------------------------------------------------------------
-CITATION_RE = re.compile(r"\[([^\[\]#]+?)#(\d+)\]")
+# [Title#page]; the model sometimes appends the chunk number ([Title#page#0]) - still read as Title#page
+CITATION_RE = re.compile(r"\[([^\[\]#]+?)#(\d+)(?:#[\w-]+)?\]")
+CITATION_VARIANT_RE = re.compile(r"\[[^\[\]#]+?#\d+#[\w-]+\]")
 
 def format_context(docs):
     # each passage is labelled with the exact citation the model must use

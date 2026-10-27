@@ -1,14 +1,12 @@
 """
-Fill the course template with the results and export the PDF.
+Build the submission report (plain A4 document, no course template, logo or watermark) and export the PDF.
 
     python make_report.py              # live results   -> Week 27_Graded Mini Project_Jain.docx / .pdf
     POLICY_OFFLINE=1 python make_report.py   # offline dry run -> agentic-policy-assistant/runs_offline/report_offline.*
 
-The template path defaults to the course folder on Google Drive; override with TEMPLATE_PATH=... .
 All numbers are read from the run outputs, so the report always matches the actual run.
 """
 
-import copy
 import inspect
 import json
 import os
@@ -18,11 +16,9 @@ import sys
 import textwrap
 from pathlib import Path
 
-import docx
 import pandas as pd
-from docx.text.paragraph import Paragraph
 
-from report_helpers import Cell
+from report_helpers import Body, new_document, section
 
 HERE = Path(__file__).parent
 REPO = HERE / "agentic-policy-assistant"
@@ -35,9 +31,6 @@ import graph, prompts, tools  # noqa: E402
 
 NAME = "Week 27_Graded Mini Project_Jain"
 OUT_DOCX = RUN / "report_offline.docx" if OFFLINE else HERE / f"{NAME}.docx"
-TEMPLATE = Path(os.getenv("TEMPLATE_PATH", Path.home() / "Library/CloudStorage/GoogleDrive-sachin.arpit@gmail.com/My Drive/"
-                "0-Arpit-June-2026-Onwards/IITM Pravartak - Professional Certificate Programme in Generative AI and "
-                "Machine Learning/Week 27-Graded Mini Project/Week 27_Graded Mini Project_Template.docx"))
 
 sfx = "_offline" if OFFLINE else ""
 v1 = pd.read_csv(RUN / "eval_v1_agent_only.csv")
@@ -48,17 +41,21 @@ summary = json.load(open(RES / "summary.json"))
 pol = pd.read_json(REPO / "data" / "policies.jsonl", lines=True)
 model_name = summary["model"]
 
-d = docx.Document(TEMPLATE)
-T = d.tables
-assert len(T) == 9, "unexpected template layout"
-obj = d.paragraphs[2]
-new_p = copy.deepcopy(obj._p); obj._p.addnext(new_p)
-p = Paragraph(new_p, obj._parent)
-for r in p.runs[1:]:
-    r._r.getparent().remove(r._r)
-p.runs[0].text = "Submitted by: "
-r = p.add_run(f"Arpit Jain   |   Repo: agentic-policy-assistant/ · Notebook: {NAME}.ipynb · Results: results/*.png")
-r.font.size = p.runs[0].font.size
+d = new_document("Week 27 Graded Mini Project: Policy Assistant Agent (Single Agent + Memory + Graph)",
+                 f"Arpit Jain  |  Repo: agentic-policy-assistant/  |  Notebook: {NAME}.ipynb  |  Results: results/*.png")
+
+TASKS = [("Part 1: Foundations", "Task 1.1: Data prep"), (None, "Task 1.2: Tools"), (None, "Task 1.3: Prompts"),
+         (None, "Task 1.4: Agent"), (None, "Task 1.5: Evaluation Version 1"),
+         ("Part 2: Memory, Graph, Critic and Polishing", "Task 2.1: Memory"), (None, "Task 2.2: Graph orchestration"),
+         (None, "Task 2.3: Critic"), (None, "Task 2.4: Tests and docs")]
+
+
+def task(i):
+    part, title = TASKS[i]
+    if part:
+        section(d, part, 1)
+    section(d, title, 2)
+    return Body(d)
 
 
 def src(fn, n=30):
@@ -69,7 +66,7 @@ def src(fn, n=30):
 pct = lambda s: f"{s.mean():.0%} ({int(s.sum())}/{len(s)})"
 
 # ---------------- 1.1 Data prep
-c = Cell(T[0].cell(0, 0))
+c = task(0)
 c.text("data/policies.jsonl holds **8 short policies of a fictional company**, one JSON object per line with doc_id, "
        "text and date. The doc_ids carry a version (leave_v3), and remote_work_v1 is kept on purpose as a "
        "**superseded** version, to test that the agent cites the latest policy.")
@@ -80,7 +77,7 @@ c.code('{"doc_id": "leave_v3", "text": "Leave Policy (v3). Full-time employees r
        "One JSONL record")
 
 # ---------------- 1.2 Tools
-c = Cell(T[1].cell(0, 0))
+c = task(1)
 c.table([["Tool", "Contract", "Errors"],
          ["policy_search(query, k)", "FAISS (CPU) over 2-sentence windows of each policy, local MiniLM embeddings; "
           "returns JSON hits {doc_id, date, snippet, score}; k is clamped to 1-8", "never raises"],
@@ -94,7 +91,7 @@ c.code(f'read_policy("remote_work_v9.9") -> {tools.read_policy.invoke({"doc_id":
        f'calculator("5 / 0") -> {tools.calculator.invoke({"expression": "5 / 0"})}', "Tool outputs")
 
 # ---------------- 1.3 Prompts
-c = Cell(T[2].cell(0, 0))
+c = task(2)
 c.text("prompts.py holds the system prompt below, a retry suffix (the critic's issues are fed back to the agent), "
        "the memory-hint template and the optional LLM critic prompt. The acceptance rules map one-to-one to the "
        "checks the critic and eval.py enforce:")
@@ -105,7 +102,7 @@ c.bullets([f"**doc_id tokens:** rule 1. The critic rejects answers without a val
            f"graph max_steps={graph.DEFAULT_MAX_STEPS}."])
 
 # ---------------- 1.4 Agent
-c = Cell(T[3].cell(0, 0))
+c = task(3)
 c.bullets([f"**Agent:** create_tool_calling_agent + AgentExecutor (a ReAct loop: the model picks a tool, observes the "
            f"result, decides again). Model: **{model_name}**, temperature=0, seed=42, max_iterations={prompts.MAX_ITERATIONS}, "
            "verbose=True. Every response is cached in SQLite, so reruns are identical.",
@@ -117,7 +114,7 @@ c.bullets([f"**Agent:** create_tool_calling_agent + AgentExecutor (a ReAct loop:
 c.image(RES / "05_error_recovery.png", 14.6, "Error-recovery case (terminal output of app.py with the verbose agent trace)")
 
 # ---------------- 1.5 Evaluation V1
-c = Cell(T[4].cell(0, 0))
+c = task(4)
 c.text(f"8 canned questions: the 6 starter queries + a password-length question + an out-of-corpus boundary "
        f"question. Pass = has_docid AND has_quote AND expected doc cited AND key facts present (boundary: refuses and cites "
        f"nothing). **Version 1 = the bare agent (no graph, memory or critic): pass rate {pct(v1.PASS)}.**")
@@ -128,7 +125,7 @@ c.text("Logs: every question is saved as one JSON line (answer, tool calls, late
        "table is runs/eval_v1_agent_only.csv.", size=8.5)
 
 # ---------------- 2.1 Memory
-c = Cell(T[5].cell(0, 0))
+c = task(5)
 c.bullets(["**Write only verified facts:** memory.write stores a fact only if the answer has a [doc_id], every doc_id exists, "
            "and every quote is verbatim in the cited policy. The graph calls it only after the critic approves. "
            "Duplicates are skipped.",
@@ -143,7 +140,7 @@ c.text(f"On the warm run, memory hit {int(cmp.loc['memory hits', 'warm'])} of 8 
        "hints made the agent cheaper without reducing grounding.")
 
 # ---------------- 2.2 Graph
-c = Cell(T[6].cell(0, 0))
+c = task(6)
 c.image(RES / "01_graph.png", 14.6, "graph.py - LangGraph StateGraph")
 c.bullets(["**Nodes:** plan (rule-based tool plan) → memory_read → agent_answer → critic → memory_write → stop. "
            "Every node appends a line to state.trace and increments graph_steps.",
@@ -154,7 +151,7 @@ c.bullets(["**Nodes:** plan (rule-based tool plan) → memory_read → agent_ans
 c.image(RES / "06_budget_and_retry.png", 14.6, "Budget stop (max_steps=3) and the critic → retry → stop path (scripted bad model)")
 
 # ---------------- 2.3 Critic
-c = Cell(T[7].cell(0, 0))
+c = task(7)
 c.text("graph.critic_check is deterministic and returns the minimal JSON {\"valid\": bool, \"issues\": [...]}. It checks:")
 c.bullets(["a [doc_id] is present and the doc_id exists; at least one quote; each quote is verbatim in the cited policy",
            "simple claims: every number in the answer must appear in the cited policies (or come from the question / calculator)",
@@ -170,7 +167,7 @@ c.text(f"In the evaluation, the critic approved {int(cold.critic_valid.sum())}/8
        f"{int(cold.retries.sum())} retries needed.")
 
 # ---------------- 2.4 Tests + docs
-c = Cell(T[8].cell(0, 0))
+c = task(8)
 c.text(f"**PyTest: {summary['tests']}** (offline: a deterministic stand-in model emits real tool calls, so no key is needed):")
 c.bullets(["tests/test_tools.py: corpus fields, typed search hits, k clamp, full text, typed PolicyNotFoundError, soft "
            "tool error, calculator safe division and code rejection",

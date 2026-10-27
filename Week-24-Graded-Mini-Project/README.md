@@ -19,7 +19,7 @@ Every configuration runs with `ConversationBufferMemory` across 3-turn conversat
 | `questions.json` | 10 questions with gold pages, gold answers and key facts |
 | `scoring.py` | Drafts the rubric scores into `logs/manual_scores.csv` for manual review |
 | `summarize.py` | Runs table, example Q/A pairs and the recommendation (shared by the notebook and the report) |
-| `make_report.py`, `report_helpers.py` | Fill the course template and export the PDF |
+| `make_report.py`, `report_helpers.py` | Build the report (DOCX + PDF) from the run outputs |
 | `check_setup.py` | Pre-flight check of the API keys and model name |
 | `run_all.sh` | Runs everything with one command |
 | `logs/` | `run_log.jsonl` / `.csv` (every answer + metadata) and `manual_scores.csv` |

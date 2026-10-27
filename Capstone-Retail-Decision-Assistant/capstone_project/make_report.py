@@ -72,7 +72,7 @@ imp = pd.read_csv(O / "02_permutation_importance.csv", index_col=0)
 
 s = []
 s += [P("Intelligent Retail Decision Assistant - Capstone Report", h1),
-      P(f"IITM Pravartak · Professional Certificate Programme in Generative AI and Machine Learning · Arpit Jain · "
+      P(f"Capstone Project · Arpit Jain · "
         f"Run mode: {mode_label()}", small), Spacer(1, 6)]
 
 s += [P("1. Problem and approach", h2),

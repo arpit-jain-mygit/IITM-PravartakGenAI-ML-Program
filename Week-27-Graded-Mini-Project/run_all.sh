@@ -24,7 +24,7 @@ else
 fi
 cd ..
 
-# 3. fill the course template -> docx + pdf, and the 2-page analysis summary
+# 3. full report -> docx + pdf, and the 2-page analysis summary
 $PY make_report.py
 $PY make_summary.py
 

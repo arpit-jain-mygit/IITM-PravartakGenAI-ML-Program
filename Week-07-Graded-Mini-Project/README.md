@@ -10,6 +10,7 @@ This project uses the IBM HR Analytics dataset (1,470 employees, 16.1% attrition
 |---|---|
 | `notebook.ipynb` | Full analysis: EDA, preprocessing, imbalance handling, 5 tuned models, evaluation, threshold tuning, drivers, model saving |
 | `report.pdf` | Executive summary: dataset overview, challenges, model comparison, insights and recommendations |
+| `make_report.py` | Rebuilds `report.pdf` from the notebook outputs in `outputs/` |
 | `model.pkl` | Final trained pipeline (feature engineering + encoding + scaling + Logistic Regression), saved with joblib |
 | `model_metadata.json` | Chosen model, best hyperparameters, tuned decision threshold (0.68), test metrics |
 | `attrition_features.py` | Feature engineering used inside the pipeline (must sit next to `model.pkl` to load it) |

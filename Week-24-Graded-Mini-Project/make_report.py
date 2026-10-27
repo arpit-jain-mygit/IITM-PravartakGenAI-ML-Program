@@ -1,14 +1,12 @@
 """
-Fill the course template (Week 24_Graded Mini Project_Template.docx) with the results and export the PDF.
+Build the submission report (plain A4 document, no course template, logo or watermark) and export the PDF.
 
     python make_report.py                 # live results  -> Week 24_Graded Mini Project_Jain.docx / .pdf
     RAG_DRY_RUN=1 python make_report.py   # dry-run results -> dryrun/report_dryrun.docx / .pdf
 
-The template path defaults to the course folder on Google Drive; override with TEMPLATE_PATH=... .
 Every number in the report is read from outputs/ and logs/, so the text always matches the actual run.
 """
 
-import copy
 import inspect
 import json
 import os
@@ -17,20 +15,15 @@ import subprocess
 import textwrap
 from pathlib import Path
 
-import docx
 import pandas as pd
-from docx.text.paragraph import Paragraph
 
 import rag
 import summarize
-from report_helpers import Cell
+from report_helpers import Body, new_document, section
 
 HERE = Path(__file__).parent
 W = rag.WORK_DIR
 O = W / "outputs"
-TEMPLATE = Path(os.getenv("TEMPLATE_PATH", Path.home() / "Library/CloudStorage/GoogleDrive-sachin.arpit@gmail.com/My Drive/"
-                "0-Arpit-June-2026-Onwards/IITM Pravartak - Professional Certificate Programme in Generative AI and "
-                "Machine Learning/Week 24-Mini-Graded Project/Week 24_Graded Mini Project_Template.docx"))
 NAME = "Week 24_Graded Mini Project_Jain"
 OUT_DOCX = (W / "report_dryrun.docx") if rag.DRY_RUN else (HERE / f"{NAME}.docx")
 
@@ -45,19 +38,17 @@ rec = summarize.recommendation(agg, bench, cold)
 examples = summarize.pick_examples(ev, agg)
 n_reviewed = int(ev["reviewed"].astype(str).str.lower().eq("true").sum())
 
-d = docx.Document(TEMPLATE)
-T = d.tables
-assert len(T) == 8, "unexpected template layout"
+d = new_document("Week 24 Graded Mini Project: Grounded Answers from a Small Knowledge Pack",
+                 f"Arpit Jain  |  Notebook and code: {NAME}.ipynb, rag.py (full outputs in the attached zip)")
 
-# name line under the objective
-obj = d.paragraphs[2]
-new_p = copy.deepcopy(obj._p); obj._p.addnext(new_p)
-p = Paragraph(new_p, obj._parent)
-for r in p.runs[1:]:
-    r._r.getparent().remove(r._r)
-p.runs[0].text = "Submitted by: "
-r = p.add_run(f"Arpit Jain   |   Notebook and code: {NAME}.ipynb, rag.py (full outputs in the attached zip)")
-r.font.size = p.runs[0].font.size
+TASKS = ["Task 1: Data prep (tiny corpus)", "Task 2: Baseline pipeline", "Task 3: Prompt templates (2 variants)",
+         "Task 4: Experiments grid", "Task 5: Question set", "Task 6: Logging", "Task 7: Manual evaluation",
+         "Task 8: Summary report"]
+
+
+def task(i):
+    section(d, TASKS[i])
+    return Body(d)
 
 
 def src(obj, max_lines=40):
@@ -68,7 +59,7 @@ def src(obj, max_lines=40):
 f2, f3 = lambda v: f"{v:.2f}", lambda v: f"{v:.3f}"
 
 # ================================================================ Task 1
-c = Cell(T[0].cell(0, 0))
+c = task(0)
 c.text("**Topic:** HR policies of one company, *Kestrel Data Labs* (a **fictional** company created for this project). "
        "Because the company is fictional, the LLM cannot know any of the answers from training, so every correct answer "
        "must come from retrieval. That makes groundedness and \"don't know\" behaviour easy to test. The 7 PDFs "
@@ -83,7 +74,7 @@ c.bullets(["**Extraction:** pypdf extracts text from each page, producing one La
 c.code(src(rag.load_corpus), "rag.py - loader with metadata")
 
 # ================================================================ Task 2
-c = Cell(T[1].cell(0, 0))
+c = task(1)
 c.text("**Pipeline:** PyPDF loader → RecursiveCharacterTextSplitter (chunk_size 600, overlap 15% = 90 chars) → embeddings "
        f"(OpenAI {rag.OPENAI_EMBED_MODEL} or open-source {rag.OPEN_SOURCE_EMBED_MODEL}) → FAISS → retriever (top-k = {rag.TOP_K}) "
        f"→ {rag.GEMINI_MODEL} (temperature 0) → citation-enforcing prompt → answer + citations[].")
@@ -106,7 +97,7 @@ c.text(f"**Example output (R1, Q2 follow-up):** standalone query = \"{ex.standal
        f"{ex.output_tokens} out; latency = {ex.latency_s}s.")
 
 # ================================================================ Task 3
-c = Cell(T[2].cell(0, 0))
+c = task(2)
 c.text("Both templates share the same grounding rules. They differ only in **output structure**:")
 c.code(rag.SYSTEM_RULES, "Shared system rules (P1 and P2)")
 c.table([["", "P1 - concise", "P2 - reasoned (structured)"],
@@ -124,7 +115,7 @@ for run in ["R1", "R7"]:
 c.text(rec["lines"][2])
 
 # ================================================================ Task 4
-c = Cell(T[3].cell(0, 0))
+c = task(3)
 c.text("**Step 1 - retrieval benchmark (no LLM).** Every chunking configuration was indexed with both embedding models, "
        "and the top-4 results for the 8 answerable questions were compared with the gold pages in questions.json.")
 show = bench.copy()
@@ -161,7 +152,7 @@ c.text("The chunk size (300 / 600 / 1000) and the overlap (10% / 15% / 20%) are 
        "Embeddings and prompts are each A/B tested, with everything else held fixed.")
 
 # ================================================================ Task 5
-c = Cell(T[4].cell(0, 0))
+c = task(4)
 c.text("There are 10 questions: **6 factual, 2 follow-up / multi-hop, 2 boundary**. They are asked as three 3-turn "
        "conversations (A, B, C) plus one single turn (D). Memory is reset after each conversation.")
 c.table([["ID", "Conv/turn", "Type", "Question", "Gold page(s)", "Expected answer"]] +
@@ -174,7 +165,7 @@ c.bullets(["**Q2 (follow-up):** \"those\" refers to the annual-leave days from Q
            "to over-reach."])
 
 # ================================================================ Task 6
-c = Cell(T[5].cell(0, 0))
+c = task(5)
 c.text("Every answer is appended to **logs/run_log.jsonl**, with a flat copy in logs/run_log.csv: one JSON object per answer, "
        f"{len(ev)} rows in total. Each row contains:")
 c.bullets(["**Required:** run_id, question, answer, citations, used_chunks (chunk IDs) and used_pages (titles#page), "
@@ -196,7 +187,7 @@ c.text(f"Average latency per question ranged from {lat.min():.2f}s to {lat.max()
        "Total tokens per run are compared in Task 8.")
 
 # ================================================================ Task 7
-c = Cell(T[6].cell(0, 0))
+c = task(6)
 c.table([["Criterion", "Scale", "Scoring rule"],
          ["Relevance", "0-2", "2 = all key facts of the gold answer; 1 = some; 0 = wrong / off-topic"],
          ["Groundedness", "0-2", "2 = every claim supported by retrieved chunks; 0 = unsupported content / cites unretrieved pages"],
@@ -219,7 +210,7 @@ c.table([["Run"] + list(agg.index)] + [[qid] + [f"{mem.loc[r, qid]:.0f}" for r i
         [5.0] + [1.37] * len(agg))
 
 # ================================================================ Task 8
-c = Cell(T[7].cell(0, 0))
+c = task(7)
 c.text("**Runs table: configuration → average scores** (each criterion normalised to 0-1; overall = mean of the 6):")
 c.table([["Run", "Config (chunk/ovl/emb/prompt)", "Rel", "Grnd", "Cite", "Conc", "Mem", "Refus", "Overall", "Points", "Tok/run"]] +
         [[i, f"{r.chunk}/{r.overlap}/{'OpenAI' if r.embedding == 'openai' else 'BGE'}/{r.prompt}", f2(r.relevance), f2(r.groundedness),

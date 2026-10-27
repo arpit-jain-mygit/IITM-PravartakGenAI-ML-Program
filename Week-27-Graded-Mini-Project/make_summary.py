@@ -80,8 +80,7 @@ retries = int(cold.retries.sum() + warm.retries.sum())
 
 s = []
 s += [P("Policy Assistant Agent - Analysis Summary", h1),
-      P(f"Week 27 Graded Mini Project · IITM Pravartak, Professional Certificate Programme in Generative AI and Machine "
-        f"Learning · Arpit Jain · Model: {model} (temperature 0) · Full details: notebook, repository and template report", small),
+      P(f"Week 27 Graded Mini Project · Arpit Jain · Model: {model} (temperature 0) · Full details: notebook, repository and full report", small),
       Spacer(1, 3)]
 
 # ---- 1. what was built
@@ -142,7 +141,7 @@ s += [P("3. Analysis", h2),
         "but not paraphrased claims (the optional LLM critic covers this at extra cost)."),
       B("Next: per-node timeouts, a planner/solver/critic multi-agent variant, SQLite-table memory with expiry when a policy version "
         "changes, and a larger regression set of real employee questions."),
-      P("Reproduce: put OPENAI_API_KEY in agentic-policy-assistant/.env and run ./run_all.sh (tests → notebook → PNGs → template "
+      P("Reproduce: put OPENAI_API_KEY in agentic-policy-assistant/.env and run ./run_all.sh (tests → notebook → PNGs → full "
         "report → this summary → zip). POLICY_OFFLINE=1 runs everything without a key.", small)]
 
 SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=1.6 * cm, rightMargin=1.6 * cm, topMargin=1.3 * cm, bottomMargin=1.3 * cm,

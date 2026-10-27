@@ -19,7 +19,7 @@ else
   $PY -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=3600 "$NB"
 fi
 
-# 3. fill the course template -> .docx + .pdf
+# 3. build the report -> .docx + .pdf
 $PY make_report.py
 
 # 4. submission zip (live run only)

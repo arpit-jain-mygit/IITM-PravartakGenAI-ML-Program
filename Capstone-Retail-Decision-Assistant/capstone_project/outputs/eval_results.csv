@@ -1,0 +1,14 @@
+id,query,expected_tools,routed_tools,route_ok,checks_passed,failed_checks,PASS,latency_s,llm_tokens
+Q1,Recommend casual sneakers under ₹4000 for daily wear.,product_search,product_search,True,3/3,,True,0.43,1101
+Q2,Can I return a discounted product after 7 days?,policy_qa,policy_qa,True,2/2,,True,0.003,364
+Q3,Suggest products for a premium customer who prefers black formal shoes.,product_search,product_search,True,3/3,,True,0.001,1132
+Q4,Which customer segment seems most price-sensitive?,segment_insights,segment_insights,True,1/1,,True,0.0,0
+Q5,Summarise the top three retrieved products and explain why they fit the query.,summarise_products,summarise_products,True,1/1,,True,0.0,0
+Q6,How long does express delivery take?,policy_qa,policy_qa,True,2/2,,True,0.0,319
+Q7,Is physical damage to my watch covered under the warranty?,policy_qa,policy_qa,True,2/2,,True,0.0,270
+Q8,Show me a blue backpack for travel under 3000 and tell me if I can exchange it later.,"product_search,policy_qa","product_search,policy_qa",True,3/3,,True,0.001,1404
+Q9,What do customers say about Nike running shoes?,review_summary,review_summary,True,1/1,,True,0.001,0
+Q10,When will my refund reach me if I paid by UPI?,policy_qa,policy_qa,True,1/1,,True,0.001,294
+Q11,Recommend a red watch under ₹300.,product_search,product_search,True,2/2,,True,0.002,824
+Q12,What is 15% off 3999?,calculator,calculator,True,1/1,,True,0.0,0
+Q13,What's the weather in Mumbai today?,(none),(none),True,1/1,,True,0.0,0

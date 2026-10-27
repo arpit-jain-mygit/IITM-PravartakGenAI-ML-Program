@@ -1,0 +1,20 @@
+{
+  "model": "Logistic Regression (L1, C=0.1)",
+  "cv_roc_auc": 0.64,
+  "test": {
+    "ROC-AUC": 0.678,
+    "PR-AUC": 0.67,
+    "accuracy": 0.66,
+    "precision": 0.662,
+    "recall": 0.688,
+    "F1": 0.675
+  },
+  "threshold": 0.34,
+  "top_drivers": [
+    "membership_ord",
+    "income_ord",
+    "avg_product_rating",
+    "engagement",
+    "discount_amount"
+  ]
+}

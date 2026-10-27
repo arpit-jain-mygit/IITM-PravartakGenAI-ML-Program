@@ -1,0 +1,15 @@
+{
+  "suite_pass_rate": 1.0,
+  "suite_pass": 13,
+  "suite_total": 13,
+  "routing_accuracy": 1.0,
+  "pytest": "23 passed in 1.64s",
+  "mode": "LIVE (gpt-4o-mini + text-embedding-3-small)",
+  "usage": {
+    "llm_calls": 0,
+    "cached_calls": 11,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "embedding_tokens": 0
+  }
+}

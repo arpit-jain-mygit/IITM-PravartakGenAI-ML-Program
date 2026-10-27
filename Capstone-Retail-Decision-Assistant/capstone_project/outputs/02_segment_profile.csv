@@ -1,0 +1,5 @@
+segment,name,size,age,income_ord,membership_ord,avg_order_value,total_orders,days_since_last_purchase,final_price,discount_percent,time_on_page,purchase_rate,return_rate,share,conv_deep_discount,conv_low_discount,discount_lift
+0,Occasional Buyers,436,39.92,0.933,1.468,3007.032,4.06,28.752,2504.714,18.222,180.068,0.523,0.19,0.291,0.518,0.509,0.009
+1,Frequent Small-Basket Buyers,420,38.145,1.017,1.579,2694.217,11.214,28.793,2415.166,18.214,182.331,0.54,0.183,0.28,0.612,0.475,0.137
+2,High-Value Regulars,391,37.752,1.008,1.45,4799.833,8.205,27.604,2428.181,17.788,180.769,0.486,0.159,0.261,0.497,0.443,0.054
+3,Lapsing Customers,253,38.296,0.984,1.585,3609.219,6.897,69.609,2393.003,18.933,180.94,0.494,0.178,0.169,0.505,0.482,0.023

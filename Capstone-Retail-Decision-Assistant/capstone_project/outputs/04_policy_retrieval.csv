@@ -1,0 +1,11 @@
+question,gold,top1,top1_score,hit@1,hit@3
+Can I return shoes after 10 days?,POL_RETURNS,POL_RETURNS,0.5452,True,True
+Is a 40% discounted item returnable?,POL_RETURNS,POL_RETURNS,0.7423,True,True
+Can I exchange a shirt for a bigger size?,POL_EXCHANGE,POL_EXCHANGE,0.4451,True,True
+Can I exchange innerwear?,POL_EXCHANGE,POL_EXCHANGE,0.5279,True,True
+How long does standard delivery take?,POL_SHIPPING,POL_SHIPPING,0.656,True,True
+Is express shipping available?,POL_SHIPPING,POL_SHIPPING,0.4733,True,True
+When will I get my money back?,POL_REFUND,POL_REFUND,0.4685,True,True
+Do refunds need a quality check?,POL_REFUND,POL_REFUND,0.6417,True,True
+Does my watch have a warranty?,POL_WARRANTY,POL_WARRANTY,0.6112,True,True
+Is a cracked watch glass covered?,POL_WARRANTY,POL_WARRANTY,0.3446,True,True

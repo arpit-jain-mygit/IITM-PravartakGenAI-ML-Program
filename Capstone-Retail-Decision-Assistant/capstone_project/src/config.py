@@ -37,7 +37,9 @@ TOP_K_PRODUCTS = 5
 TOP_K_POLICIES = 3
 # minimum cosine similarity for a hit to count as relevant (calibrated per embedding model in notebook 03)
 MIN_PRODUCT_SIM = 0.30 if not OFFLINE else 0.25
-MIN_POLICY_SIM = 0.35 if not OFFLINE else 0.30
+# live value calibrated in notebook 04 (OpenAI embeddings): weakest correct policy match 0.345 (cracked watch
+# glass -> POL_WARRANTY), strongest out-of-scope question 0.296 (store opening hours) -> midpoint 0.32
+MIN_POLICY_SIM = 0.32 if not OFFLINE else 0.30
 
 # --- agent -------------------------------------------------------------------
 MAX_TOOL_CALLS = 3          # hard bound on tool calls per user query

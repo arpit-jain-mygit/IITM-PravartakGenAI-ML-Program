@@ -108,8 +108,8 @@ It runs the tests, then notebooks 01 to 06 with all outputs saved, then writes `
 - **Frequent Small-Basket Buyers are the most price-sensitive.** Their conversion rises about 14 points on deep discounts, while the other segments barely react.
 
 **RAG**
-- Product retrieval: sub-category precision@5 about 0.97 and colour precision@5 about 0.99 (offline embeddings, 300 dataset queries).
-- Policy retrieval: hit@1 = 100% on 10 labelled questions.
+- Product retrieval: sub-category precision@5 = 0.93, colour precision@5 = 1.00, and the exact source item in the top 5 for 66% of queries (OpenAI text-embedding-3-small, 300 dataset queries).
+- Policy retrieval: hit@1 = 100% on 10 labelled questions. The refusal threshold (0.32) is calibrated between the weakest correct match (0.345) and the strongest out-of-scope question (0.296).
 - Every recommendation and policy answer is validated against what was retrieved.
 
 **Evaluation:** 13 curated queries with automatic checks (route, budget, attributes, grounding, citation, verbatim quotes, refusal), plus 23 pytest regression tests.

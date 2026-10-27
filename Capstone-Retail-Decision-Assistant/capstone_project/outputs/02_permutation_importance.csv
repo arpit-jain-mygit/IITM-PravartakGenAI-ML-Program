@@ -1,0 +1,13 @@
+,drop_in_ROC_AUC,std
+membership_ord,0.1031,0.0246
+income_ord,0.0504,0.0144
+avg_product_rating,0.0291,0.0104
+engagement,0.0192,0.008
+discount_amount,0.0033,0.002
+state,0.0018,0.0081
+avg_order_value,0.0003,0.0011
+days_since_last_purchase,0.0003,0.0027
+added_to_cart,0.0002,0.0003
+city_tier,0.0,0.0
+preferred_channel,0.0,0.0
+size_missing,0.0,0.0

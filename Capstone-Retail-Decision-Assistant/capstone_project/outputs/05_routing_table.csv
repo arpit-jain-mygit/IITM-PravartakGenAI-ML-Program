@@ -1,0 +1,11 @@
+query,selected,why
+Recommend casual sneakers under ₹4000 for daily wear.,['product_search'],intent scores: product_search=3 | selected tools: ['product_search']
+Can I return a discounted product after 7 days?,['policy_qa'],intent scores: policy_qa=1 | selected tools: ['policy_qa']
+Is physical damage to my watch covered under the warranty?,['policy_qa'],"intent scores: policy_qa=1, product_search=1 | product noun without shopping intent inside a policy question -> product_search dropped | selected tools: ['policy_qa']"
+Which customer segment seems most price-sensitive?,['segment_insights'],intent scores: segment_insights=2 | selected tools: ['segment_insights']
+Show me a blue backpack for travel under 3000 and tell me if I can exchange it later.,"['product_search', 'policy_qa']","intent scores: policy_qa=1, product_search=3 | selected tools: ['product_search', 'policy_qa']"
+What do customers say about Nike running shoes?,['review_summary'],"intent scores: product_search=1, review_summary=1 | 'review_summary' is more specific -> suppressed ['product_search'] | selected tools: ['review_summary']"
+Summarise the top three retrieved products.,['summarise_products'],intent scores: summarise_products=1 | selected tools: ['summarise_products']
+What is 20% off 2499?,['calculator'],intent scores: calculator=1 | selected tools: ['calculator']
+Tell me about the weather today,[],"guardrail: out-of-scope topic -> polite refusal, no tool"
+Do you offer gift wrapping?,['policy_qa'],intent scores: none matched | no rule fired -> LLM router chose policy_qa: The request is about store policies regarding gift wrapping. | selected tools: ['policy_qa']

@@ -1,0 +1,5 @@
+model,CV ROC-AUC,CV std,best params
+Dummy (majority),0.5,0.0,{}
+Logistic Regression,0.64,0.027,"{'C': 0.1, 'penalty': 'l1'}"
+Random Forest,0.641,0.024,"{'max_depth': 4, 'max_features': 0.3, 'min_samples_leaf': 5}"
+Gradient Boosting (HGB),0.638,0.029,"{'l2_regularization': 0.0, 'learning_rate': 0.03, 'max_depth': 2, 'max_iter': 100}"

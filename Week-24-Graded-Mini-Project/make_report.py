@@ -234,8 +234,8 @@ c.bullets([f"Versions and configuration are printed in notebook section 0 (LLM {
            "The corpus is regenerated deterministically by make_corpus.py, and the questions and gold key are in questions.json.",
            "LLM responses are cached in cache/llm_cache.sqlite and embeddings in cache/embeddings/, so re-running the "
            "notebook reproduces every answer without new API calls.",
-           "Run: put the keys in .env → python check_setup.py → ./run_all.sh. That executes the notebook, drafts the "
-           "scores, builds this report and zips the deliverables."])
+           "Run: install requirements.txt, copy .env.example to .env and add the keys, then execute the notebook "
+           "(see the README). The submitted logs and cache reproduce every result."])
 
 d.save(OUT_DOCX)
 print("saved", OUT_DOCX.relative_to(HERE))

@@ -149,9 +149,8 @@ s += [P("7. Findings, limitations and next steps", h2),
         "unstable source ids; no product images."),
       B("Next steps: richer behavioural data (sessions, prior views), a cross-encoder reranker, LLM-as-judge groundedness scoring, "
         "A/B tests of segment-specific offers."),
-      P("Reproducibility: pip install -r requirements.txt; key in .env (OPENAI_API_KEY, optional OPENAI_BASE_URL for Vocareum); "
-        "./run_all.sh. Seeds fixed (42), temperature 0, LLM and embedding calls cached on disk; RETAIL_OFFLINE=1 runs everything "
-        "without a key.", small)]
+      P("Reproducibility: setup and run steps are in the README (install requirements, add OPENAI_API_KEY to .env, "
+        "run notebooks 01-06). Seeds are fixed (42), temperature is 0, and LLM and embedding calls are cached.", small)]
 
 out = O / "Capstone_Report.pdf"
 SimpleDocTemplate(str(out), pagesize=A4, leftMargin=1.8 * cm, rightMargin=1.8 * cm, topMargin=1.5 * cm, bottomMargin=1.5 * cm,

@@ -141,8 +141,8 @@ s += [P("3. Analysis", h2),
         "but not paraphrased claims (the optional LLM critic covers this at extra cost)."),
       B("Next: per-node timeouts, a planner/solver/critic multi-agent variant, SQLite-table memory with expiry when a policy version "
         "changes, and a larger regression set of real employee questions."),
-      P("Reproduce: put OPENAI_API_KEY in agentic-policy-assistant/.env and run ./run_all.sh (tests → notebook → PNGs → full "
-        "report → this summary → zip). POLICY_OFFLINE=1 runs everything without a key.", small)]
+      P("Reproduce: install requirements.txt, put OPENAI_API_KEY in agentic-policy-assistant/.env, run pytest and then the "
+        "notebook (see the README). app.py --offline runs everything without a key.", small)]
 
 SimpleDocTemplate(str(OUT), pagesize=A4, leftMargin=1.6 * cm, rightMargin=1.6 * cm, topMargin=1.3 * cm, bottomMargin=1.3 * cm,
                   title="Policy Assistant Agent - Analysis Summary", author="Arpit Jain").build(s)

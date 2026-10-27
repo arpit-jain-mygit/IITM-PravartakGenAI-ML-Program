@@ -179,7 +179,7 @@ c.image(RES / "08_eval_table.png", 14.6, f"Final evaluation table, printed by ev
 c.bullets([f"**Acceptance:** cold {pct(cold.PASS)}, warm {pct(warm.PASS)}. Target ≥ 80%: "
            f"{'met' if min(cold.PASS.mean(), warm.PASS.mean()) >= 0.8 else 'NOT met'}.",
            "**Docs and run scripts:** README.md (setup, run, design notes, limitations); app.py CLI (ask, eval --cold, "
-           "eval, reset-memory, --report for a JSON run report, --sqlite); run_all.sh builds everything.",
+           "eval, reset-memory, --report for a JSON run report, --sqlite); the README gives setup and run steps.",
            "**Screenshots in results/:** 02 cold run, 03 warm run (memory hits), 05 error recovery, 06 budget/retry, "
            "07 pytest, 08 eval table.",
            "**Optional extensions done:** SQLite checkpointing (graph.sqlite_checkpointer, every node state persisted), a "

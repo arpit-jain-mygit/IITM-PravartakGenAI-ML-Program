@@ -10,6 +10,13 @@ The chain is written as a LangChain Runnable graph (LCEL):
 """
 
 import os
+
+# macOS: faiss-cpu and PyTorch (used by the open-source embedding model) each bundle an OpenMP runtime, and
+# loading both aborts the process ("OMP: Error #15"). Allowing the duplicate must happen before either loads.
+# It has no effect on Linux / Google Colab.
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
 import re
 import time
 from pathlib import Path

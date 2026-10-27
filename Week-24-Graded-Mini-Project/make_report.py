@@ -77,7 +77,8 @@ c.code(src(rag.load_corpus), "rag.py - loader with metadata")
 c = task(1)
 c.text("**Pipeline:** PyPDF loader → RecursiveCharacterTextSplitter (chunk_size 600, overlap 15% = 90 chars) → embeddings "
        f"(OpenAI {rag.OPENAI_EMBED_MODEL} or open-source {rag.OPEN_SOURCE_EMBED_MODEL}) → FAISS → retriever (top-k = {rag.TOP_K}) "
-       f"→ {rag.GEMINI_MODEL} (temperature 0) → citation-enforcing prompt → answer + citations[].")
+       f"→ {rag.GEMINI_MODEL} (temperature 0 requested; this model uses fixed sampling and ignores it, so answers are "
+       f"cached for exact reproducibility) → citation-enforcing prompt → answer + citations[].")
 c.bullets([
     "**Runnable graph (LCEL):** condense → retrieve → prompt → LLM. The condense step uses the conversation memory "
     "to rewrite a follow-up such as \"how many of *those* can I carry forward?\" into a standalone search query. "
@@ -228,7 +229,7 @@ for label, r in examples:
 c.text(f"**Recommendation: chunking {rec['chunk']} + {rec['embedding']} + {rec['prompt']}**")
 c.bullets(rec["lines"])
 c.text("**Reproducibility:**")
-c.bullets([f"Versions and configuration are printed in notebook section 0 (LLM {rag.GEMINI_MODEL}, temperature 0, "
+c.bullets([f"Versions and configuration are printed in notebook section 0 (LLM {rag.GEMINI_MODEL}, temperature 0 requested but ignored by this model, "
            f"top_k {rag.TOP_K}, seed {rag.SEED}, exact FAISS search; hidden reasoning tokens are logged separately). requirements.txt pins every package.",
            "The corpus is regenerated deterministically by make_corpus.py, and the questions and gold key are in questions.json.",
            "LLM responses are cached in cache/llm_cache.sqlite and embeddings in cache/embeddings/, so re-running the "

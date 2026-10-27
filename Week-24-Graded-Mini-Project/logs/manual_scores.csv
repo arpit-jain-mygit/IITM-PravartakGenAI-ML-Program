@@ -1,71 +1,71 @@
 run_id,qid,relevance,groundedness,citation,conciseness,memory,refusal_correct,reviewed,note
-R1,Q1,2,2,2,1,,,False,ok
-R1,Q2,2,2,2,1,2.0,,False,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
-R1,Q3,2,2,2,1,2.0,,False,ok
-R1,Q4,2,2,1,1,,,False,citation format includes the chunk number ([Title#page#chunk]) - page is correct
-R1,Q5,2,2,2,1,2.0,,False,ok
-R1,Q6,2,2,2,1,2.0,1.0,False,correct refusal
-R1,Q7,2,2,2,1,,,False,ok
-R1,Q8,2,2,2,1,2.0,,False,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
-R1,Q9,2,2,2,1,2.0,1.0,False,correct refusal
-R1,Q10,2,2,2,1,,,False,ok
-R2,Q1,2,2,1,1,,,False,citation format includes the chunk number ([Title#page#chunk]) - page is correct
-R2,Q2,2,2,1,1,2.0,,False,"citation format includes the chunk number ([Title#page#chunk]) - page is correct; standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
-R2,Q3,2,2,1,1,2.0,,False,citation format includes the chunk number ([Title#page#chunk]) - page is correct
-R2,Q4,2,2,2,1,,,False,ok
-R2,Q5,2,2,2,1,2.0,,False,ok
-R2,Q6,2,2,2,1,2.0,1.0,False,correct refusal
-R2,Q7,2,2,2,1,,,False,ok
-R2,Q8,2,2,2,1,2.0,,False,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
-R2,Q9,2,2,2,1,2.0,1.0,False,correct refusal
-R2,Q10,2,2,2,1,,,False,ok
-R3,Q1,2,2,2,1,,,False,ok
-R3,Q2,2,2,2,1,2.0,,False,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
-R3,Q3,2,2,2,1,2.0,,False,ok
-R3,Q4,2,2,2,1,,,False,ok
-R3,Q5,2,2,2,1,2.0,,False,ok
-R3,Q6,2,2,2,1,2.0,1.0,False,correct refusal
-R3,Q7,2,2,2,1,,,False,ok
-R3,Q8,2,2,2,1,2.0,,False,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
-R3,Q9,2,2,2,1,2.0,1.0,False,correct refusal
-R3,Q10,2,2,2,1,,,False,ok
-R4,Q1,2,2,2,1,,,False,ok
-R4,Q2,2,2,2,1,2.0,,False,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
-R4,Q3,2,2,2,1,2.0,,False,ok
-R4,Q4,2,2,2,1,,,False,ok
-R4,Q5,2,2,2,1,2.0,,False,ok
-R4,Q6,2,2,2,1,2.0,1.0,False,correct refusal
-R4,Q7,2,2,2,1,,,False,ok
-R4,Q8,2,2,2,1,2.0,,False,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
-R4,Q9,2,2,2,1,2.0,1.0,False,correct refusal
-R4,Q10,2,2,2,1,,,False,ok
-R5,Q1,2,2,2,1,,,False,ok
-R5,Q2,2,2,2,1,2.0,,False,"standalone query: How many days of annual leave can full-time employees carry forward each year, and what happens to the remaining days?"
-R5,Q3,2,2,2,1,2.0,,False,ok
-R5,Q4,2,2,2,1,,,False,ok
-R5,Q5,2,2,2,1,2.0,,False,ok
-R5,Q6,2,2,2,1,2.0,1.0,False,correct refusal
-R5,Q7,2,2,2,1,,,False,ok
-R5,Q8,2,2,2,1,2.0,,False,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
-R5,Q9,2,2,2,1,2.0,1.0,False,correct refusal
-R5,Q10,2,2,2,1,,,False,ok
-R6,Q1,2,2,2,1,,,False,ok
-R6,Q2,2,2,2,1,2.0,,False,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
-R6,Q3,2,2,2,1,2.0,,False,ok
-R6,Q4,2,2,2,1,,,False,ok
-R6,Q5,2,2,2,1,2.0,,False,ok
-R6,Q6,2,2,2,1,2.0,1.0,False,correct refusal
-R6,Q7,2,2,2,1,,,False,ok
-R6,Q8,2,2,2,1,2.0,,False,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
-R6,Q9,2,2,2,1,2.0,1.0,False,correct refusal
-R6,Q10,2,2,2,1,,,False,ok
-R7,Q1,2,2,1,1,,,False,citation format includes the chunk number ([Title#page#chunk]) - page is correct
-R7,Q2,2,2,1,0,2.0,,False,"citation format includes the chunk number ([Title#page#chunk]) - page is correct; standalone query: How many days of annual leave can full-time employees carry forward each year, and what happens to the remaining days?"
-R7,Q3,2,2,1,0,2.0,,False,citation format includes the chunk number ([Title#page#chunk]) - page is correct
-R7,Q4,2,2,2,0,,,False,ok
-R7,Q5,2,2,2,1,2.0,,False,ok
-R7,Q6,2,2,2,1,2.0,1.0,False,correct refusal
-R7,Q7,2,2,2,1,,,False,ok
-R7,Q8,2,2,2,1,2.0,,False,standalone query: What class can an L5 employee fly on an 8-hour flight?
-R7,Q9,2,2,2,1,2.0,1.0,False,correct refusal
-R7,Q10,2,2,2,0,,,False,ok
+R1,Q1,2,2,2,1,,,True,ok
+R1,Q2,2,2,2,1,2.0,,True,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
+R1,Q3,2,2,2,1,2.0,,True,ok
+R1,Q4,2,2,1,1,,,True,citation format includes the chunk number ([Title#page#chunk]) - page is correct
+R1,Q5,2,2,2,1,2.0,,True,ok
+R1,Q6,2,2,2,1,2.0,1.0,True,correct refusal
+R1,Q7,2,2,2,1,,,True,ok
+R1,Q8,2,2,2,1,2.0,,True,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
+R1,Q9,2,2,2,1,2.0,1.0,True,correct refusal
+R1,Q10,2,2,2,1,,,True,ok
+R2,Q1,2,2,1,1,,,True,citation format includes the chunk number ([Title#page#chunk]) - page is correct
+R2,Q2,2,2,1,1,2.0,,True,"citation format includes the chunk number ([Title#page#chunk]) - page is correct; standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
+R2,Q3,2,2,1,1,2.0,,True,citation format includes the chunk number ([Title#page#chunk]) - page is correct
+R2,Q4,2,2,2,1,,,True,ok
+R2,Q5,2,2,2,1,2.0,,True,ok
+R2,Q6,2,2,2,1,2.0,1.0,True,correct refusal
+R2,Q7,2,2,2,1,,,True,ok
+R2,Q8,2,2,2,1,2.0,,True,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
+R2,Q9,2,2,2,1,2.0,1.0,True,correct refusal
+R2,Q10,2,2,2,1,,,True,ok
+R3,Q1,2,2,2,1,,,True,ok
+R3,Q2,2,2,2,1,2.0,,True,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
+R3,Q3,2,2,2,1,2.0,,True,ok
+R3,Q4,2,2,2,1,,,True,ok
+R3,Q5,2,2,2,1,2.0,,True,ok
+R3,Q6,2,2,2,1,2.0,1.0,True,correct refusal
+R3,Q7,2,2,2,1,,,True,ok
+R3,Q8,2,2,2,1,2.0,,True,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
+R3,Q9,2,2,2,1,2.0,1.0,True,correct refusal
+R3,Q10,2,2,2,1,,,True,ok
+R4,Q1,2,2,2,1,,,True,ok
+R4,Q2,2,2,2,1,2.0,,True,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
+R4,Q3,2,2,2,1,2.0,,True,ok
+R4,Q4,2,2,2,1,,,True,ok
+R4,Q5,2,2,2,1,2.0,,True,ok
+R4,Q6,2,2,2,1,2.0,1.0,True,correct refusal
+R4,Q7,2,2,2,1,,,True,ok
+R4,Q8,2,2,2,1,2.0,,True,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
+R4,Q9,2,2,2,1,2.0,1.0,True,correct refusal
+R4,Q10,2,2,2,1,,,True,ok
+R5,Q1,2,2,2,1,,,True,ok
+R5,Q2,2,2,2,1,2.0,,True,"standalone query: How many days of annual leave can full-time employees carry forward each year, and what happens to the remaining days?"
+R5,Q3,2,2,2,1,2.0,,True,ok
+R5,Q4,2,2,2,1,,,True,ok
+R5,Q5,2,2,2,1,2.0,,True,ok
+R5,Q6,2,2,2,1,2.0,1.0,True,correct refusal
+R5,Q7,2,2,2,1,,,True,ok
+R5,Q8,2,2,2,1,2.0,,True,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
+R5,Q9,2,2,2,1,2.0,1.0,True,correct refusal
+R5,Q10,2,2,2,1,,,True,ok
+R6,Q1,2,2,2,1,,,True,ok
+R6,Q2,2,2,2,1,2.0,,True,"standalone query: How many days of annual leave can full-time employees carry forward to the next year, and what happens to the remaining days?"
+R6,Q3,2,2,2,1,2.0,,True,ok
+R6,Q4,2,2,2,1,,,True,ok
+R6,Q5,2,2,2,1,2.0,,True,ok
+R6,Q6,2,2,2,1,2.0,1.0,True,correct refusal
+R6,Q7,2,2,2,1,,,True,ok
+R6,Q8,2,2,2,1,2.0,,True,standalone query: What are the flight class entitlements for an L5 employee on an 8-hour flight?
+R6,Q9,2,2,2,1,2.0,1.0,True,correct refusal
+R6,Q10,2,2,2,1,,,True,ok
+R7,Q1,2,2,1,1,,,True,citation format includes the chunk number ([Title#page#chunk]) - page is correct
+R7,Q2,2,2,1,0,2.0,,True,"citation format includes the chunk number ([Title#page#chunk]) - page is correct; standalone query: How many days of annual leave can full-time employees carry forward each year, and what happens to the remaining days?"
+R7,Q3,2,2,1,0,2.0,,True,citation format includes the chunk number ([Title#page#chunk]) - page is correct
+R7,Q4,2,2,2,0,,,True,ok
+R7,Q5,2,2,2,1,2.0,,True,ok
+R7,Q6,2,2,2,1,2.0,1.0,True,correct refusal
+R7,Q7,2,2,2,1,,,True,ok
+R7,Q8,2,2,2,1,2.0,,True,standalone query: What class can an L5 employee fly on an 8-hour flight?
+R7,Q9,2,2,2,1,2.0,1.0,True,correct refusal
+R7,Q10,2,2,2,0,,,True,ok

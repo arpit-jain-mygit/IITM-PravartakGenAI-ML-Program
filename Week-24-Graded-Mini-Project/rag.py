@@ -45,7 +45,7 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 # ---------------------------------------------------------------------------
 # Fixed configuration (recorded in every log row for reproducibility)
 # ---------------------------------------------------------------------------
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")   # 2.5-flash is retired for new API keys
 OPENAI_EMBED_MODEL = "text-embedding-3-small"
 OPEN_SOURCE_EMBED_MODEL = "BAAI/bge-small-en-v1.5"
 TOP_K = 4
@@ -160,9 +160,13 @@ def get_llm():
     if DRY_RUN:
         return RunnableLambda(_dry_run_llm)
     from langchain_google_genai import ChatGoogleGenerativeAI
-    kwargs = dict(model=GEMINI_MODEL, temperature=TEMPERATURE, seed=SEED, max_retries=6, rate_limiter=_rate_limiter)
+    # timeout + retries: Gemini returns 503/504 when it is overloaded; the client backs off and retries
+    kwargs = dict(model=GEMINI_MODEL, temperature=TEMPERATURE, seed=SEED, max_retries=6, timeout=120,
+                  rate_limiter=_rate_limiter)
     if "2.5" in GEMINI_MODEL:
-        kwargs["thinking_budget"] = 0      # no hidden reasoning tokens: cheaper, faster, deterministic
+        kwargs["thinking_budget"] = 0      # 2.5 models: switch hidden reasoning off (cheaper, faster)
+    # Gemini 3.x models always "think" a little first; those hidden reasoning tokens are reported separately
+    # and are excluded from answer_tokens below, so the <=120-token conciseness rule measures the visible answer.
     return ChatGoogleGenerativeAI(**kwargs)
 
 
@@ -269,6 +273,7 @@ class RAGSession:
             "used_pages": sorted({f"{d.metadata['doc_title']}#{d.metadata['page']}" for d in out["docs"]}),
             "input_tokens": usage.get("input_tokens", 0) + cu.get("input_tokens", 0),
             "output_tokens": usage.get("output_tokens", 0) + cu.get("output_tokens", 0),
-            "answer_tokens": usage.get("output_tokens", 0),
+            "answer_tokens": usage.get("output_tokens", 0) - (usage.get("output_token_details") or {}).get("reasoning", 0),
+            "reasoning_tokens": (usage.get("output_token_details") or {}).get("reasoning", 0),
             "latency_s": round(latency, 2),
         }

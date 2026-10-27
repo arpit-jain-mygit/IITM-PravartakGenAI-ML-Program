@@ -228,8 +228,8 @@ for label, r in examples:
 c.text(f"**Recommendation: chunking {rec['chunk']} + {rec['embedding']} + {rec['prompt']}**")
 c.bullets(rec["lines"])
 c.text("**Reproducibility:**")
-c.bullets([f"Versions and configuration are printed in notebook section 0 (LLM {rag.GEMINI_MODEL}, temperature 0, thinking "
-           f"budget 0, top_k {rag.TOP_K}, seed {rag.SEED}, exact FAISS search). requirements.txt pins every package.",
+c.bullets([f"Versions and configuration are printed in notebook section 0 (LLM {rag.GEMINI_MODEL}, temperature 0, "
+           f"top_k {rag.TOP_K}, seed {rag.SEED}, exact FAISS search; hidden reasoning tokens are logged separately). requirements.txt pins every package.",
            "The corpus is regenerated deterministically by make_corpus.py, and the questions and gold key are in questions.json.",
            "LLM responses are cached in cache/llm_cache.sqlite and embeddings in cache/embeddings/, so re-running the "
            "notebook reproduces every answer without new API calls.",

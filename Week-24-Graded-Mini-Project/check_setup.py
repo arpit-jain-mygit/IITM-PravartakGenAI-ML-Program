@@ -5,10 +5,12 @@ Quick pre-flight check before running the experiments (makes 2 tiny API calls).
 
 - confirms GOOGLE_API_KEY and OPENAI_API_KEY are set in .env
 - lists the Gemini models your key can use and checks that GEMINI_MODEL is one of them
+- makes one real call, because a listed model can still be retired for new keys
 - sends one short test prompt to Gemini and embeds one sentence with OpenAI
 """
 
 import os
+import re
 import sys
 
 from dotenv import load_dotenv
@@ -39,7 +41,16 @@ if rag.GEMINI_MODEL not in names:
     sys.exit(1)
 
 # --- 3. One tiny call to each API ---
-reply = rag.get_llm().invoke("Reply with the single word: ready")
+# A model can still be listed but retired for new keys, so the real call is the actual test.
+try:
+    reply = rag.get_llm().invoke("Reply with the single word: ready")
+except Exception as e:                          # noqa: BLE001 - show a short, actionable message
+    msg = str(e)
+    hint = re.search(r"use models/([\w.-]+)", msg)
+    print(f"!! Gemini call with '{rag.GEMINI_MODEL}' failed: {msg[:300]}")
+    if hint:
+        print(f"   Google suggests '{hint.group(1)}'. Add the line GEMINI_MODEL={hint.group(1)} to .env and run this check again.")
+    sys.exit(1)
 print(f"Gemini ({rag.GEMINI_MODEL}) says: {reply.text.strip()!r}")
 vec = rag.get_embeddings("openai").embed_query("setup check")
 print(f"OpenAI {rag.OPENAI_EMBED_MODEL}: vector of {len(vec)} dimensions")

@@ -33,7 +33,7 @@ capstone_project/
 ├── src/                                   config, data_prep, ml, documents, llm, retrieval, recommender, policy_qa, tools, agent, evaluation
 ├── tests/test_regressions.py              23 offline regression tests
 ├── outputs/                               charts, tables, model, segment summary, eval logs, Capstone_Report.pdf
-├── run_all.sh, README.md, requirements.txt, .env.example
+├── README.md, requirements.txt, .env.example
 ```
 
 ## Dataset: source, reproduction and data dictionary
@@ -67,15 +67,16 @@ pip install -r requirements.txt
 
 **2. Add your API key.** Copy `.env.example` to `.env` and set `OPENAI_API_KEY`. For the Vocareum lab key, also set `OPENAI_BASE_URL`.
 
-**3. Run everything:**
+**3. Run the tests and the notebooks in order:**
 
 ```bash
-./run_all.sh
+python -m pytest -q tests
+cd notebooks && for nb in 01_data_preparation 02_classical_ml 03_rag_recommendation 04_policy_qa 05_agentic_assistant 06_evaluation; do jupyter nbconvert --to notebook --execute --inplace "$nb.ipynb"; done
 ```
 
-It runs the tests, then notebooks 01 to 06 with all outputs saved, then writes `outputs/Capstone_Report.pdf` and the submission zip.
+Each notebook saves its charts and tables to `outputs/`, and notebook 06 runs the 13 curated test queries.
 
-**Offline mode.** `RETAIL_OFFLINE=1 ./run_all.sh` runs the whole project with no key. It uses local MiniLM embeddings and a deterministic extractive generator instead of the LLM, and writes to `outputs_offline/`. The ML parts are identical in both modes.
+**Offline mode.** Set `RETAIL_OFFLINE=1` before running the notebooks to run the whole project with no key. It uses local MiniLM embeddings and a deterministic extractive generator instead of the LLM, and writes to `outputs_offline/`. The ML parts are identical in both modes.
 
 **Google Colab:**
 1. Upload the folder and run `pip install -r requirements.txt`.

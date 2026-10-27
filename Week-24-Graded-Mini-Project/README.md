@@ -19,54 +19,36 @@ Every configuration runs with `ConversationBufferMemory` across 3-turn conversat
 | `questions.json` | 10 questions with gold pages, gold answers and key facts |
 | `scoring.py` | Drafts the rubric scores into `logs/manual_scores.csv` for manual review |
 | `summarize.py` | Runs table, example Q/A pairs and the recommendation (shared by the notebook and the report) |
-| `check_setup.py` | Pre-flight check of the API keys and model name |
-| `run_all.sh` | Runs everything with one command |
 | `logs/` | `run_log.jsonl` / `.csv` (every answer + metadata) and `manual_scores.csv` |
 | `outputs/` | Charts and result tables |
 | `cache/` | Cached LLM responses and embeddings, so re-runs are free and identical |
 
 ## How to run
 
-You need Python 3.12 and LibreOffice for the PDF export (`brew install --cask libreoffice`).
+You need Python 3.12.
 
-**1. Install the packages** (skip if `.venv` already exists):
+**1. Install the packages:**
 
 ```bash
 python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
-**2. Add your API keys.** Open `.env` and replace the two placeholders:
+**2. Add your API keys.** Copy `.env.example` to `.env` and fill in the two keys:
+- `GOOGLE_API_KEY` for Gemini (the free tier is enough)
+- `OPENAI_API_KEY`, used only for `text-embedding-3-small`
 
-```text
-GOOGLE_API_KEY=...   # Gemini, from https://aistudio.google.com/apikey (free tier is enough)
-OPENAI_API_KEY=...   # used only for text-embedding-3-small (well under $0.01 in total)
-```
+`.env.example` also fixes the model used for these results: `GEMINI_MODEL=gemini-3.5-flash-lite`.
 
-**3. Check the setup.** This makes 2 tiny API calls and confirms that the Gemini model name works for your key:
-
-```bash
-.venv/bin/python check_setup.py
-```
-
-If it says the model is not available, add `GEMINI_MODEL=<one of the listed models>` to `.env`.
-
-**4. Run everything.** This takes about 15-20 minutes because the free tier allows about 9 requests a minute, and it makes about 110 Gemini calls:
+**3. Run the notebook:**
 
 ```bash
-./run_all.sh
+.venv/bin/python make_corpus.py
+.venv/bin/jupyter nbconvert --to notebook --execute --inplace "Week 24_Graded Mini Project_Jain.ipynb"
 ```
 
-This executes the notebook, logs all 70 answers, drafts the scores, and builds `Week 24_Graded Mini Project_Jain.pdf` and `.zip`.
+The submitted `logs/` and `cache/` already hold all 70 answers. A re-run therefore reproduces the same results without calling Gemini. Only the embedding speed measurement (section 4b) calls OpenAI, for a fraction of a cent. To call the APIs again from scratch, delete `logs/run_log.*` and `cache/`.
 
-**5. Review the scores (the manual evaluation).**
-1. Open `logs/manual_scores.csv` next to `logs/run_log.csv`.
-2. Read each answer and correct any score you disagree with. The `note` column explains each draft score.
-3. Set `reviewed` to `True`.
-4. Run `./run_all.sh` again. Everything comes from the cache, so it takes about 1 minute, makes no API calls, and rebuilds the report with your scores.
-
-**6. Submit.** Upload the PDF and/or the zip on the portal.
-
-**Test without API keys:** `RAG_DRY_RUN=1 ./run_all.sh` runs the whole chain with a stand-in LLM and local embeddings. It writes only to `dryrun/`, so real results are never touched.
+**Manual evaluation (Task 7):** `logs/manual_scores.csv` holds the rubric score for every answer. Each score was drafted by `scoring.py` and then reviewed by hand (`reviewed = True` on all 70 rows). The notebook reads this file for the summary tables.
 
 ## Reproducibility
 

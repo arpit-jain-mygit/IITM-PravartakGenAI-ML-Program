@@ -22,10 +22,11 @@ fi
 # 3. build the report -> .docx + .pdf
 [ -f make_report.py ] && $PY make_report.py      # report builder lives in the repo only, not in the zip
 
-# 4. submission zip (live run only)
+# 4. submission zip (live run only). Repo tooling (run_all.sh, check_setup.py, make_report.py,
+#    report_helpers.py) stays in GitHub and is NOT packed into the zip.
 if [ "${RAG_DRY_RUN:-0}" != "1" ]; then
   STAGE=$(mktemp -d); mkdir "$STAGE/$NAME"
-  cp -R "$NAME.pdf" "$NB" README.md requirements.txt .env.example run_all.sh check_setup.py \
+  cp -R "$NAME.pdf" "$NB" README.md requirements.txt .env.example \
         rag.py make_corpus.py scoring.py summarize.py questions.json \
         corpus logs outputs cache "$STAGE/$NAME/"
   rm -f "$NAME.zip"; (cd "$STAGE" && zip -qr - "$NAME") > "$NAME.zip"

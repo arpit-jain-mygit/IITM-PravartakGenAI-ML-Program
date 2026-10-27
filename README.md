@@ -10,3 +10,5 @@ Assignments and projects, one folder per week.
 | 27 | Graded Mini Project: Policy Assistant Agent (LangGraph, memory, critic) | [Week-27-Graded-Mini-Project](Week-27-Graded-Mini-Project/) |
 | Capstone | Intelligent Retail Decision Assistant (ML + RAG + policy QA + agent controller) | [Capstone-Retail-Decision-Assistant](Capstone-Retail-Decision-Assistant/capstone_project/) |
 | 19 | Graded Mini Project: Fashion-MNIST Generative Modelling (DAE, VAE, cGAN, AdaIN) | [Week-19-Graded-Mini-Project](Week-19-Graded-Mini-Project/) |
+
+Build tooling (report generators, run/packaging scripts) is described in [TOOLING.md](TOOLING.md); it is kept out of the submission zips.

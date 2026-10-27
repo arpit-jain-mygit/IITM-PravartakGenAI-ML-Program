@@ -34,6 +34,14 @@ RUN_DIR.mkdir(parents=True, exist_ok=True)
 set_llm_cache(SQLiteCache(database_path=str(RUN_DIR / "llm_cache.sqlite")))
 
 
+def rel(path) -> str:
+    """Show paths relative to the project folder in printed output and logs (no machine-specific paths)."""
+    try:
+        return str(Path(path).resolve().relative_to(Path(__file__).parent.resolve()))
+    except ValueError:
+        return os.path.relpath(path)
+
+
 @lru_cache(maxsize=1)
 def get_llm() -> BaseChatModel:
     """OpenAI chat model (or a Vocareum-compatible endpoint via OPENAI_BASE_URL), temperature 0."""

@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from agent import RUN_DIR
+from agent import RUN_DIR, rel
 from graph import NOT_FOUND, run_graph
 from models import DOC_ID_RE, QUOTE_RE
 
@@ -84,7 +84,7 @@ def run_eval(app, label: str, max_steps: int = 8) -> pd.DataFrame:
     summary = {"label": label, "timestamp": ts, "questions": len(df), "pass_rate": round(df["PASS"].mean(), 3),
                "meets_80pct": bool(df["PASS"].mean() >= 0.8), "avg_latency_s": round(df["latency_s"].mean(), 3),
                "avg_agent_steps": round(df["agent_steps"].mean(), 2), "memory_hits": int(df["memory_hit"].sum()),
-               "memory_writes": int(df["memory_written"].sum()), "log_file": str(log_path)}
+               "memory_writes": int(df["memory_written"].sum()), "log_file": rel(log_path)}
     json.dump({"summary": summary, "records": records}, open(RUN_DIR / f"report_{label}.json", "w"), indent=2, default=str)
     return df
 

@@ -19,6 +19,7 @@ import json
 import os
 import shutil
 import sys
+import warnings
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -35,18 +36,19 @@ def main(argv=None):
     ap.add_argument("--report")
     ap.add_argument("--quiet", action="store_true")
     a = ap.parse_args(argv)
+    warnings.filterwarnings("ignore")          # keep library deprecation notices (with install paths) out of the output
 
     # the run directory must be chosen before agent.py is imported (it sets up the LLM cache there)
     os.environ.setdefault("POLICY_AGENT_RUN_DIR", str(HERE / ("runs_offline" if a.offline else "runs")))
 
-    from agent import RUN_DIR, build_agent
+    from agent import RUN_DIR, build_agent, rel
     from graph import build_graph, run_graph, sqlite_checkpointer
     from memory import FactMemory
 
     memory = FactMemory(RUN_DIR / "memory")
     if a.command == "reset-memory" or (a.command == "eval" and a.cold):
         memory.clear()
-        print(f"memory cleared ({RUN_DIR / 'memory'})")
+        print(f"memory cleared ({rel(RUN_DIR / 'memory')})")
         if a.command == "reset-memory":
             return
 
@@ -79,7 +81,7 @@ def main(argv=None):
         print_table(df, label)
         if a.report:
             shutil.copy(RUN_DIR / f"report_{label}.json", a.report)
-        print(f"\nlogs: {RUN_DIR / 'logs'}   table: {RUN_DIR / f'eval_{label}.csv'}")
+        print(f"\nlogs: {rel(RUN_DIR / 'logs')}   table: {rel(RUN_DIR / f'eval_{label}.csv')}")
 
 
 if __name__ == "__main__":

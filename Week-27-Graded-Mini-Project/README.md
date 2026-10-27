@@ -17,7 +17,7 @@ For Vocareum, also add `OPENAI_BASE_URL=...`.
 **2. Build everything.** This takes about 5 minutes and makes about 60 short gpt-4o-mini calls, costing a few cents:
 
 ```bash
-cd ~/Documents/claude/IITM-PravartakGenAI-ML-Program/Week-27-Graded-Mini-Project && ./run_all.sh
+cd Week-27-Graded-Mini-Project && ./run_all.sh
 ```
 
 It runs, in order:
